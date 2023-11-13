@@ -9,6 +9,6 @@ app.use(cookieParser());
 
 app.use('/api/v1', products);
 app.use('/api/v1', auth);
-
+app.use('/api/v1', order);
 
 module.exports = app
