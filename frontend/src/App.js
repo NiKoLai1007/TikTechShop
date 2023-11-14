@@ -159,7 +159,7 @@ function App() {
           <Route
             path="/admin/products"
             element={
-              <ProtectedRoute isAdmin={true}>
+              <ProtectedRoute isAdmin={false}>
                 <ProductsList />
               </ProtectedRoute>
             }
@@ -167,7 +167,7 @@ function App() {
           <Route
           path="/admin/reviews"
           element={
-            <ProtectedRoute isAdmin={true} >
+            <ProtectedRoute isAdmin={false} >
               <ProductReviews />
             </ProtectedRoute>} />
         </Routes>
