@@ -71,7 +71,7 @@ const Register = () => {
                 }
             }
 
-            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/register`, userData, config)
+            const { data } = await axios.post(`http//:localhost:4001/api/v1/register`, userData, config)
             console.log(data.user)
             setIsAuthenticated(true)
             setLoading(false)
