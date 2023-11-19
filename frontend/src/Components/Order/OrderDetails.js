@@ -27,7 +27,7 @@ const OrderDetails = () => {
                 }
             }
 
-            const { data } = await axios.get(`http//:localhost:4001/api/v1/order/${id}`, config)
+            const { data } = await axios.get(`http://localhost:4001/api/v1/order/${id}`, config)
             setOrder(data.order)
             setLoading(false)
 

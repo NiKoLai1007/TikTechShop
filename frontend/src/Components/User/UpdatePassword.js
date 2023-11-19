@@ -24,7 +24,7 @@ const UpdatePassword = () => {
                 }
             }
 
-            const {data } = await axios.put(`http//:localhost:4001/api/v1/password/update`, formData, config)
+            const {data } = await axios.put(`http://localhost:4001/api/v1/password/update`, formData, config)
             setIsUpdated(data.success)
             setLoading(false)
             toast.success('password updated', {
