@@ -53,7 +53,7 @@ export default function ProductSalesChart({ data }) {
                 }
             }
 
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/admin/product-sales`, config)
+            const { data } = await axios.get(`http//:localhost:4001/api/v1/admin/product-sales`, config)
             setSales(data.totalPercentage)
 
         } catch (error) {

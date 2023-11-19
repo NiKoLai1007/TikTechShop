@@ -22,7 +22,7 @@ const ListOrders = () => {
                     'Authorization': `Bearer ${getToken()}`
                 }
             }
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/orders/me`, config)
+            const { data } = await axios.get(`http//:localhost:4001/api/v1/orders/me`, config)
             console.log(data)
             setMyOrdersList(data.orders)
             setLoading(false)

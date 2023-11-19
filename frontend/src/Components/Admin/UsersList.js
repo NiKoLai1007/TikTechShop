@@ -27,7 +27,7 @@ const UsersList = () => {
     const listUsers = async () => {
         try {
 
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/admin/users`, config)
+            const { data } = await axios.get(`http//:localhost:4001/api/v1/admin/users`, config)
             setAllUsers(data.users)
             setLoading(false)
 
@@ -38,7 +38,7 @@ const UsersList = () => {
     }
     const deleteUser = async (id) => {
         try {
-            const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/admin/user/${id}`, config)
+            const { data } = await axios.delete(`http//:localhost:4001/api/v1/admin/user/${id}`, config)
             setIsDeleted(data.success)
             setLoading(false)
             
