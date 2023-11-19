@@ -30,7 +30,7 @@ const ProductsList = () => {
                 }
             }
 
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/admin/products`, config)
+            const { data } = await axios.get(`http//:localhost:4001/api/v1/admin/products`, config)
             console.log(data)
             setProducts(data.products)
             setLoading(false)
@@ -73,7 +73,7 @@ const ProductsList = () => {
                     'Authorization': `Bearer ${getToken()}`
                 }
             }
-            const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/admin/product/${id}`, config)
+            const { data } = await axios.delete(`http//:localhost:4001/api/v1/admin/product/${id}`, config)
 
             setIsDeleted(data.success)
             setLoading(false)

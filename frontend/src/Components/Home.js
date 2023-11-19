@@ -41,10 +41,10 @@ const Home = () => {
     const Range = createSliderWithTooltip(Slider.Range);
 
     const getProducts = async (currentPage = 1, keyword = '', price, category = '') => {
-        let link = `${process.env.REACT_APP_API}/api/v1/products?page=${currentPage}&keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+        let link = `http//:localhost:4001/api/v1/products?page=${currentPage}&keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
 
         if (category) {
-            link = `${process.env.REACT_APP_API}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`
+            link = `http//:localhost:4001/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`
         }
         console.log(link)
         let res = await axios.get(link)

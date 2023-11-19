@@ -29,7 +29,7 @@ const ProductReviews = () => {
     const getProductReviews = async (id) => {
         try {
 
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/reviews?id=${id}`, config)
+            const { data } = await axios.get(`http//:localhost:4001/api/v1/reviews?id=${id}`, config)
             setListReviews(data.reviews)
 
         } catch (error) {
@@ -38,7 +38,7 @@ const ProductReviews = () => {
     }
     const deleteReview = async (id, productId) => {
         try {
-            const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/reviews?id=${id}&productId=${productId}`, config)
+            const { data } = await axios.delete(`http//:localhost:4001/api/v1/reviews?id=${id}&productId=${productId}`, config)
             setIsDeleted(data.success)
 
         } catch (error) {

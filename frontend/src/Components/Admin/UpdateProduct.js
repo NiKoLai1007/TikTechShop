@@ -51,7 +51,7 @@ const UpdateProduct = () => {
 
     const getProductDetails =  async (id) => {
         try {
-           const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/${id}`)
+           const { data } = await axios.get(`http//:localhost:4001/api/v1/product/${id}`)
            setProduct(data.product)
            setLoading(false)
            
@@ -70,7 +70,7 @@ const UpdateProduct = () => {
                     'Authorization': `Bearer ${getToken()}`
                 }
             }
-            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/admin/product/${id}`, productData, config)
+            const { data } = await axios.put(`http//:localhost:4001/api/v1/admin/product/${id}`, productData, config)
             setIsUpdated(data.success)
            
         } catch (error) {
