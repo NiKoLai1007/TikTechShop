@@ -25,7 +25,7 @@ const UpdateProfile = () => {
             }
         }
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/me`, config)
+            const { data } = await axios.get(`http//:localhost:4001/api/v1/me`, config)
             console.log(data)
             // setUser(data.user)
             setName(data.user.name);
@@ -47,7 +47,7 @@ const UpdateProfile = () => {
             }
         }
         try {
-            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/me/update`, userData, config)
+            const { data } = await axios.put(`http//:localhost:4001/api/v1/me/update`, userData, config)
             setIsUpdated(data.success)
             setLoading(false)
             toast.success('user updated', {

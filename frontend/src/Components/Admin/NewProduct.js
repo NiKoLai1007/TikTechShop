@@ -85,7 +85,7 @@ const NewProduct = () => {
                 }
             }
 
-            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/admin/product/new`, formData, config)
+            const { data } = await axios.post(`http//:localhost:4001/api/v1/admin/product/new`, formData, config)
             setLoading(false)
             setSuccess(data.success)
             setProduct(data.product)
