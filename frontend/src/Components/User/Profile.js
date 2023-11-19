@@ -21,7 +21,7 @@ const Profile = () => {
             }
         }
         try {
-            const { data } = await axios.get(`http//:localhost:4001/api/v1/me`, config)
+            const { data } = await axios.get(`http://localhost:4001/api/v1/me`, config)
             console.log(data)
             setUser(data.user)
             setLoading(false)

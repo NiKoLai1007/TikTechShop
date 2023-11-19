@@ -13,7 +13,7 @@ const Header = ({ cartItems }) => {
     const logoutUser = async () => {
 
         try {
-            await axios.get(`http//:localhost:4001/api/v1/logout`)
+            await axios.get(`http://localhost:4001/api/v1/logout`)
 
             setUser('')
 

@@ -43,7 +43,7 @@ function App() {
   const addItemToCart = async (id, quantity) => {
     console.log(id, quantity)
     try {
-      const { data } = await axios.get(`http//:localhost:4001/api/v1/product/${id}`)
+      const { data } = await axios.get(`http://localhost:4001/api/v1/product/${id}`)
       const item = {
         product: data.product._id,
         name: data.product.name,
@@ -151,7 +151,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute isAdmin={true}>
+              <ProtectedRoute isAdmin={false}>
                 <Dashboard />
               </ProtectedRoute>
             }

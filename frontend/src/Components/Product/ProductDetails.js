@@ -95,7 +95,7 @@ const ProductDetails = ({ addItemToCart, cartItems }) => {
                 }
             }
 
-            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/review`, reviewData, config)
+            const { data } = await axios.put(`http://localhost:4001/api/v1/review`, reviewData, config)
             setSuccess(data.success)
 
         } catch (error) {

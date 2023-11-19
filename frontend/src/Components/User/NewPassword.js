@@ -22,7 +22,7 @@ const NewPassword = () => {
                     'Content-Type': 'application/json'
                 }
             }
-            const { data } = await axios.put(`http//:localhost:4001/api/v1/password/reset/${token}`, passwords, config)
+            const { data } = await axios.put(`http://localhost:4001/api/v1/password/reset/${token}`, passwords, config)
             setSuccess(data.success)
         } catch (error) {
             setError(error)
