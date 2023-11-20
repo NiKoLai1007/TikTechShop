@@ -51,7 +51,7 @@ const UpdateProduct = () => {
 
     const getProductDetails =  async (id) => {
         try {
-           const { data } = await axios.get(`http//:localhost:4001/api/v1/product/${id}`)
+           const { data } = await axios.get(`http://localhost:4001/api/v1/product/${id}`)
            setProduct(data.product)
            setLoading(false)
            

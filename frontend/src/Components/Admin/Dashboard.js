@@ -37,7 +37,7 @@ const Dashboard = () => {
                 }
             }
 
-            const { data } = await axios.get(`http//:localhost:4001/api/v1/admin/products`, config)
+            const { data } = await axios.get(`http://localhost:4001/api/v1/admin/products`, config)
             console.log(data)
             setProducts(data.products)
             setLoading(false)

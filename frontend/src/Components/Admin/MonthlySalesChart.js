@@ -17,7 +17,7 @@ export default function MonthlySalesChart() {
                 }
             }
 
-            const { data } = await axios.get(`http//:localhost:4001/api/v1/admin/sales-per-month`, config)
+            const { data } = await axios.get(`http://localhost:4001/api/v1/admin/sales-per-month`, config)
             setSales(data.salesPerMonth)
             setLoading(false)
 

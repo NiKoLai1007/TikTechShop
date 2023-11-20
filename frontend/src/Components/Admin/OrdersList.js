@@ -30,7 +30,7 @@ const OrdersList = () => {
                     'Authorization': `Bearer ${getToken()}`
                 }
             }
-            const { data } = await axios.get(`http//:localhost:4001/api/v1/admin/orders`, config)
+            const { data } = await axios.get(`http://localhost:4001/api/v1/admin/orders`, config)
             setAllOrders(data.orders)
             setLoading(false)
         } catch (error) {
