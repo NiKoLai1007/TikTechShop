@@ -45,7 +45,7 @@ const OrdersList = () => {
                     'Authorization': `Bearer ${getToken()}`
                 }
             }
-            const { data } = await axios.delete(`http//:localhost:4001/api/v1/admin/order/${id}`, config)
+            const { data } = await axios.delete(`http://localhost:4001/api/v1/admin/order/${id}`, config)
             setIsDeleted(data.success)
             setLoading(false)
         } catch (error) {
