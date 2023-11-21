@@ -70,7 +70,7 @@ const UpdateProduct = () => {
                     'Authorization': `Bearer ${getToken()}`
                 }
             }
-            const { data } = await axios.put(`http//:localhost:4001/api/v1/admin/product/${id}`, productData, config)
+            const { data } = await axios.put(`http://localhost:4001/api/v1/admin/product/${id}`, productData, config)
             setIsUpdated(data.success)
            
         } catch (error) {
