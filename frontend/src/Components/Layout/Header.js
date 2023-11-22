@@ -6,6 +6,8 @@ import { getUser, logout } from '../../utils/helpers';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaShoppingCart } from 'react-icons/fa'; 
+
 const Header = ({ cartItems }) => {
 
     const [user, setUser] = useState('')
@@ -34,25 +36,15 @@ const Header = ({ cartItems }) => {
     }, [])
     return (
         <Fragment>
-            <nav className="navbar row">
-            
-                <Link to="/" style={{ textDecoration: 'none' }} >
-                    <div className="col-12 col-md-3">
-                        <div className="navbar-brand">
-                            <img src="./images/shopit_logo.png" alt="Shopit Logo" width="200" height="60"/>
-                        </div>
-                    </div>
-                </Link>
-                <div className="col-12 col-md-6 mt-2 mt-md-0">
-                    <Search />
-                </div>
+            <div className="container-fluidnav">
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 text-right"> 
+                    <a className="mr-2 text-white">Follow us on</a>
+                    <a href="#" target="_blank" className="mr-2"><i className="fa fa-facebook"></i></a>
+                    <a href="#" target="_blank" className="mr-2"><i className="fa fa-twitter"></i></a>
+                    <a href="#" target="_blank" className="mr-2"><i className="fa fa-instagram"></i></a>
 
-                <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                    <Link to="/cart" style={{ textDecoration: 'none' }} >
-                        <span id="cart" className="ml-3">Cart</span>
-                        <span className="ml-1" id="cart_count">{cartItems.length}</span>
-                        {/*<span className="ml-1" id="cart_count">2</span>*/}
-                    </Link>
                     {user ? (<div className="ml-4 dropdown d-inline">
                         <Link to="#!" className="btn dropdown-toggle text-white mr-4" type="button" id="dropDownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <figure className="avatar avatar-nav">
@@ -78,8 +70,42 @@ const Header = ({ cartItems }) => {
                                 Logout
                             </Link>
                         </div>
-                    </div>) : <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>}
+                    </div>) : <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>
+                    } 
 
+ 
+
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <nav className="navbar row">
+            
+                <Link to="/" style={{ textDecoration: 'none' }} >
+                    <div className="col-12 col-md-3">
+                        <div className="navbar-brand">
+                            <img src="./images/shopit_logo.png" alt="Shopit Logo" width="200" height="60"/>
+                        </div>
+                    </div>
+                </Link>
+                <div className="col-12 col-md-6 mt-2 mt-md-0">
+                    <Search />
+                </div>
+
+                <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+                    <Link to="/cart" style={{ textDecoration: 'none' }} className="cart-container">
+                        <span id="cart" className="ml-4">
+                            <FaShoppingCart />
+                        </span>
+                        {cartItems.length > 0 && (
+                            <span className="ml-1" id="cart_count">
+                            {cartItems.length}
+                            </span>
+                        )}
+                    </Link>
+                    
 
                 </div>
             </nav>
