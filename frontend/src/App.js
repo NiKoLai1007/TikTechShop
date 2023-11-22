@@ -151,7 +151,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute isAdmin={false}>
+              <ProtectedRoute isAdmin={true}>
                 <Dashboard />
               </ProtectedRoute>
             }
@@ -159,7 +159,7 @@ function App() {
           <Route
             path="/admin/products"
             element={
-              <ProtectedRoute isAdmin={false}>
+              <ProtectedRoute isAdmin={true}>
                 <ProductsList />
               </ProtectedRoute>
             }
@@ -167,7 +167,7 @@ function App() {
           <Route
           path="/admin/reviews"
           element={
-            <ProtectedRoute isAdmin={false} >
+            <ProtectedRoute isAdmin={true} >
               <ProductReviews />
             </ProtectedRoute>} />
         </Routes>

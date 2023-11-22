@@ -30,7 +30,11 @@ const Search = () => {
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </div>
+                
+                
             </div>
+
+            
         </form>
     )
 }

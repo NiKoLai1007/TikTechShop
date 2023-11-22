@@ -137,18 +137,13 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
+                            <UserSalesChart />
+                            <MonthlySalesChart />
+                            <ProductSalesChart />
                         </Fragment>
                     )}
                 </div>
-                <Fragment>
-                        <UserSalesChart />
-                    </Fragment>
-                    <Fragment>
-                        <MonthlySalesChart />
-                    </Fragment>
-                    <Fragment>
-                        <ProductSalesChart />
-                    </Fragment>
+              
             </div>
         </Fragment >
     )
