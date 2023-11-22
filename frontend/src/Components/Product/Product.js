@@ -23,7 +23,8 @@ const Product = ({product}) => {
 	              <Link to={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
 	            </div>
 	          </div>
-	        </div>
+	    </div>
+		
 	      )
 }
 export default Product

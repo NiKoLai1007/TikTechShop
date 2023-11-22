@@ -6,7 +6,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  background-color: #121124;
+  background-color: whitesmoke;
 }
 
 /* Scroll Bar */
@@ -31,10 +31,15 @@ body {
 nav {
   background-color: #121124;
   padding: 1rem 1rem;
+  height: var(--header-height);
+  background-image: radial-gradient(circle at right, #121124, #00b7eb);
+
 }
 
 #search_btn {
   background-color: #8345fd;
+  color:#eeeeee;
+  
 }
 
 .input-group {
@@ -43,8 +48,12 @@ nav {
 }
 
 #search_field {
-  height: 2.4rem;
-  padding: 1rem;
+  height: var(--header-with-search-height);
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+  
+  
 }
 
 #login_btn,
@@ -101,10 +110,6 @@ nav {
   color: white;
 }
 
-.navbar {
-
-  background-color: #0047ff;
-}
 
 
 
@@ -127,14 +132,14 @@ nav {
 /* Footer */
 footer {
   margin-top: 8rem;
-  color: black;
+  color: white;
   bottom: 0;
   width: 100%;
-  background-color: #0047ff;
+  background-image: radial-gradient(circle at right, #121124, #00b7eb);
 }
 
 a {
-  color: black;
+  color: white;
 }
 
 
