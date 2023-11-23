@@ -28,6 +28,8 @@ body {
   border-radius: 5px;
 }
 
+
+
 nav {
   background-color: #121124;
   padding: 1rem 1rem;
@@ -51,7 +53,7 @@ nav {
   height: var(--header-with-search-height);
   display: flex;
   align-items: center;
-  margin: 0 8px;
+  margin: 0 6px;
   
   
 }
@@ -67,6 +69,7 @@ nav {
   font-size: 1.9rem;
   color: white;
 }
+
 .container-fluidnav {
   color: black;
   background-image: radial-gradient(circle at right , #04244c, #573afb , #78c6f4);
@@ -148,8 +151,9 @@ footer {
   color: white;
   bottom: 0;
   width: 100%;
-  background-image: radial-gradient(circle at right, #121124, #00b7eb);
+  background-image: radial-gradient(circle at right , #04244c, #573afb , #78c6f4);
 }
+
 
 a {
   color: white;

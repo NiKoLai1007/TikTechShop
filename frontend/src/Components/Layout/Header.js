@@ -81,20 +81,21 @@ const Header = ({ cartItems }) => {
             </div>
             </div>
 
-            <nav className="navbar row">
+            <nav className="navbar row justify-content-center">
             
                 <Link to="/" style={{ textDecoration: 'none' }} >
-                    <div className="col-12 col-md-3">
+                    <div className="col-12 col-md-1">
                         <div className="navbar-brand">
                             <img src="./images/shopit_logo.png" alt="Shopit Logo" width="200" height="60"/>
                         </div>
                     </div>
                 </Link>
-                <div className="col-12 col-md-6 mt-2 mt-md-0">
+                <div className="col-12 col-md-8 mt-2 mt-md-0 ">
                     <Search />
                 </div>
+                
 
-                <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+                <div className="col-12 col-md-1 text-left">
                     <Link to="/cart" style={{ textDecoration: 'none' }} className="cart-container">
                         <span id="cart" className="ml-4">
                             <FaShoppingCart />
