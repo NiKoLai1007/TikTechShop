@@ -3,12 +3,15 @@ import { useParams } from "react-router-dom"
 import MetaData from './Layout/Metadata'
 import axios from 'axios';
 
+import { Carousel } from 'react-bootstrap';
+
 import Product from './Product/Product';
 import Loader from './Layout/Loader'
 import Pagination from 'react-js-pagination'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Header from './Layout/Header';
+
 
 
 const categories = [
@@ -79,15 +82,43 @@ const Home = () => {
     useEffect(() => {
         getProducts(currentPage, keyword, price, category)
     }, [currentPage, keyword, price, category])
-    // console.log(products)
+   
     return (
         <>
             {loading ? <Loader /> : (<Fragment>
                 <MetaData title={'Buy Best Products Online'} />
                 
                 <div className="container container-fluid">
-
+                <section id="carousel" className="mt-5">
+                    <Carousel>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="/images/images1.png"
+                                alt="First slide"
+                                style={{ height: '400px' }}
+                            />
+                            <Carousel.Caption style={{ color: 'black' }}>
+                                <h3>Electronics</h3>
+                                <p>The best Electronics 2023: top watch handsets ranked</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="/images/images2.png"
+                                alt="Second slide"
+                                style={{ height: '400px' }}
+                            />
+                            <Carousel.Caption style={{ color: 'black' }}>
+                                <h3>Best Sales</h3>
+                                <p>Check out the latest sales 2023</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                </section>
                     <h1 id="products_heading">Latest Products</h1>
+
                     <section id="products" className="container mt-5">
 
                         <div className="row">
