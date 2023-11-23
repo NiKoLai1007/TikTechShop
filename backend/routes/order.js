@@ -22,5 +22,8 @@ router.get('/orders/me', isAuthenticatedUser, myOrders);
 router.get('/admin/orders/', isAuthenticatedUser,  allOrders);
 
 router.route('/admin/order/:id').put(isAuthenticatedUser, updateOrder).delete(isAuthenticatedUser,  deleteOrder);
-
+router.get('/admin/total-orders', totalOrders);
+router.get('/admin/total-sales', totalSales);
+router.get('/admin/customer-sales', customerSales);
+router.get('/admin/sales-per-month', salesPerMonth);
 module.exports = router;
