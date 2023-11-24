@@ -93,8 +93,16 @@ const Register = () => {
 
             <Metadata title={'Register User'} />
 
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
+            <div className="row wrapper justify-content-center">
+                        <div className="col-12 col-md-5">
+                           <img
+                               src="images/loginpic2.png"
+                               alt="Your Image"
+                               className="img-fluid"
+                               style={{  height: '450px' }}
+                           />
+                       </div>
+                <div className="col-12 col-md-4">
                     <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
                         <h1 className="mb-3">Register</h1>
 

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
     return (
@@ -35,11 +35,10 @@ const Sidebar = () => {
                     <li>
                         <Link to="/admin/reviews"><i className="fa fa-star"></i> Reviews</Link>
                     </li>
-
                 </ul>
             </nav>
         </div>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
