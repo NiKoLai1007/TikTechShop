@@ -13,6 +13,7 @@ import Toast from '../Layout/Toast';
 const CategoryList = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
+    const [deleteError, setDeleteError] = useState('')
     const [category, setCategory] = useState([])
     const [isDeleted, setIsDeleted] = useState('')
     let navigate = useNavigate();
@@ -22,6 +23,7 @@ const CategoryList = () => {
             'Authorization': `Bearer ${getToken()}`
         }
     }
+
     const listCategory = async () => {
         try {
             const config = {
@@ -38,6 +40,7 @@ const CategoryList = () => {
             
         }
     }
+
     const deleteCategory = async (id) => {
         try {
             const { data } = await axios.delete(`http://localhost:4001/api/v1/admin/category/${id}`, config)
@@ -62,7 +65,7 @@ const CategoryList = () => {
 
         }
 
-    }, [error, isDeleted,])
+    }, [error, deleteError, isDeleted,])
 
 
     const deleteCategoryHandler = (id) => {
@@ -93,11 +96,11 @@ const CategoryList = () => {
             ],
             rows: []
         }
-        category.forEach(categories => {
+        category.forEach(category => {
             data.rows.push({
-                id: categories._id,
-                name: categories.name,
-                image: categories.images.url,
+                id: category._id,
+                name: category.name,
+                image: category.images.url,
                 actions: <Fragment>
                     <Link to={`/admin/category/${category._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
