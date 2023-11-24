@@ -38,9 +38,9 @@ const CategoryList = () => {
             
         }
     }
-    const deleteUser = async (id) => {
+    const deleteCategory = async (id) => {
         try {
-            const { data } = await axios.delete(`http://localhost:4001/api/v1/admin/user/${id}`, config)
+            const { data } = await axios.delete(`http://localhost:4001/api/v1/admin/category/${id}`, config)
             setIsDeleted(data.success)
             setLoading(false)
             
@@ -57,16 +57,16 @@ const CategoryList = () => {
             setError('')
         }
         if (isDeleted) {
-            successMsg('User deleted successfully');
-            navigate('/admin/users');
+            successMsg('Category deleted successfully');
+            navigate('/admin/category');
 
         }
 
     }, [error, isDeleted,])
 
 
-    const deleteUserHandler = (id) => {
-       deleteUser(id)
+    const deleteCategoryHandler = (id) => {
+       deleteCategory(id)
     }
     const setCategories = () => {
         const data = {
@@ -102,7 +102,7 @@ const CategoryList = () => {
                     <Link to={`/admin/category/${category._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(category._id)}>
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteCategoryHandler(category._id)}>
                         <i className="fa fa-trash"></i>
                     </button>
                 </Fragment>
