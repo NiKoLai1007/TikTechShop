@@ -10,6 +10,10 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+
 const ProductsList = () => {
     const [products, setProducts] = useState([])
     const [error, setError] = useState('')
