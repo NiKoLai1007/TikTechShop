@@ -33,6 +33,7 @@ import ProtectedRoute from './Components/Route/ProtectedRoute';
 import ProductReviews from './Components/Admin/ProductReviews';
 import CategoryList from './Components/Admin/CategoryList';
 import NewCategory from './Components/Admin/newCategory';
+import UpdateCategory from './Components/Admin/UpdateCategory';
 
 function App() {
   const [state, setState] = useState({
@@ -169,11 +170,15 @@ function App() {
           />
             <Route
             path="/admin/category"
-            element={<CategoryList />} 
+            element={<CategoryList/>} 
             />
-               <Route
+            <Route
             path="/admin/category/new"
             element={<NewCategory/>} 
+            />
+            <Route
+            path="/admin/category/:id"
+            element={<UpdateCategory/>} 
             />
 
           <Route
