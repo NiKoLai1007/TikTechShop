@@ -23,7 +23,7 @@ const ListOrders = () => {
                 }
             }
             const { data } = await axios.get(`http://localhost:4001/api/v1/orders/me`, config)
-            console.log(data)
+            //console.log(data)
             setMyOrdersList(data.orders)
             setLoading(false)
 

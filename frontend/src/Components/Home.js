@@ -115,6 +115,22 @@ const Home = () => {
                                 <p>Check out the latest sales 2023</p>
                             </Carousel.Caption>
                         </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="/images/slider.png"
+                                alt="Third slide"
+                                style={{ height: '400px' }}
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="/images/slider2.png"
+                                alt="Fourth slide"
+                                style={{ height: '400px' }}
+                            />
+                        </Carousel.Item>
                     </Carousel>
                 </section>
                     <h1 id="products_heading">Latest Products</h1>
