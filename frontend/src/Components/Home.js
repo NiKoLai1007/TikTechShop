@@ -94,31 +94,23 @@ const Home = () => {
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src="/images/images1.png"
+                                src="/images/FinalS1.png"
                                 alt="First slide"
                                 style={{ height: '400px' }}
                             />
-                            <Carousel.Caption style={{ color: 'black' }}>
-                                <h3>Electronics</h3>
-                                <p>The best Electronics 2023: top watch handsets ranked</p>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src="/images/images2.png"
+                                src="/images/FinalS2.png"
                                 alt="Second slide"
                                 style={{ height: '400px' }}
                             />
-                            <Carousel.Caption style={{ color: 'black' }}>
-                                <h3>Best Sales</h3>
-                                <p>Check out the latest sales 2023</p>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src="/images/slider.png"
+                                src="/images/FinalS3.png"
                                 alt="Third slide"
                                 style={{ height: '400px' }}
                             />
@@ -126,8 +118,16 @@ const Home = () => {
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src="/images/slider2.png"
+                                src="/images/FinalS4.png"
                                 alt="Fourth slide"
+                                style={{ height: '400px' }}
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="/images/FinalS5.png"
+                                alt="Fifth slide"
                                 style={{ height: '400px' }}
                             />
                         </Carousel.Item>
