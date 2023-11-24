@@ -31,6 +31,9 @@ import UsersList from './Components/Admin/UsersList';
 import UpdateUser from './Components/Admin/UpdateUser';
 import ProtectedRoute from './Components/Route/ProtectedRoute';
 import ProductReviews from './Components/Admin/ProductReviews';
+import CategoryList from './Components/Admin/CategoryList';
+import NewCategory from './Components/Admin/newCategory';
+
 function App() {
   const [state, setState] = useState({
     cartItems: localStorage.getItem('cartItems')
@@ -164,6 +167,15 @@ function App() {
               </ProtectedRoute>
             }
           />
+            <Route
+            path="/admin/category"
+            element={<CategoryList />} 
+            />
+               <Route
+            path="/admin/category/new"
+            element={<NewCategory/>} 
+            />
+
           <Route
           path="/admin/reviews"
           element={
