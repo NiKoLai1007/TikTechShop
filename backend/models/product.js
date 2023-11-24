@@ -34,18 +34,9 @@ const productSchema = new mongoose.Schema({
         }
     ],
     category: {
-        type: String,
-        required: [true, 'Please select category for this product'],
-        enum: {
-            values: [
-                'Kids Watch',
-                'Mens Watch',
-                'Womens Watch',
-                'Sports Watch',
-                'Smart Watch',
-            ],
-            message: 'Please select correct category for product'
-        }
+        type: mongoose.Schema.ObjectId,
+        ref: "category",
+        required: true,
     },
     seller: {
         type: String,
@@ -63,11 +54,11 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [
         {
-            // user: {
-            //     type: mongoose.Schema.ObjectId,
-            //     ref: 'User',
-            //     required: true
-            // },
+            user: {
+                type: mongoose.Schema.ObjectId,
+                ref: 'User',
+                required: true
+            },
             name: {
                 type: String,
                 required: true

@@ -103,8 +103,8 @@ const Register = () => {
                            />
                        </div>
                 <div className="col-12 col-md-4">
-                    <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
-                        <h1 className="mb-3">Register</h1>
+                    <form className="hey" onSubmit={submitHandler} encType='multipart/form-data'>
+                        <h1 className="mb-3 ont-weight-boldgit ">Register</h1>
 
                         <div className="form-group">
                             <label htmlFor="email_field">Name</label>
