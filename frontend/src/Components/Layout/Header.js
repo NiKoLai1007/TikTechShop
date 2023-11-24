@@ -37,50 +37,57 @@ const Header = ({ cartItems }) => {
     return (
         <Fragment>
             <div className="container-fluidnav">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 text-right"> 
-                    <a className="mr-2 text-white">Follow us on</a>
-                    <a href="#" target="_blank" className="mr-2"><i className="fa fa-facebook"></i></a>
-                    <a href="#" target="_blank" className="mr-2"><i className="fa fa-twitter"></i></a>
-                    <a href="#" target="_blank" className="mr-2"><i className="fa fa-instagram"></i></a>
-
-                    {user ? (<div className="ml-4 dropdown d-inline">
-                        <Link to="#!" className="btn dropdown-toggle text-white mr-4" type="button" id="dropDownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <figure className="avatar avatar-nav">
-                                <img
-                                    src={user.avatar && user.avatar.url}
-                                    alt={user && user.name}
-                                    className="rounded-circle"
-                                />
-                            </figure>
-                            <span>{user && user.name}</span>
-                        </Link>
-
-                        <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                            {user && user.role === 'admin' && (
-                                <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
-                            )}
-                            <Link className="dropdown-item" to="/orders/me">Orders</Link>
-                            <Link className="dropdown-item" to="/me">Profile</Link>
-
-                            <Link
-                                className="dropdown-item text-danger" to="/" onClick={logoutHandler}
-                            >
-                                Logout
-                            </Link>
-                        </div>
+                <div className="container">
+                    <div className="row">
+                             
+                        <div className="col-12 text-right"> 
                         
-                    </div>) : <Link to="/login" className="btn ml-1" id="login_btn">Login</Link> 
-                    }<a style={{ color: 'white' }}>|</a>
-                    <Link to="/register" className="btn ml-1" id="logout_btn">Sign Up</Link> 
+                            <a className="ml-4 mr-2 text-white">Follow us on</a>
+                            <a href="#" target="_blank" className="mr-2"><i className="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank" className="mr-2"><i className="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank" className="mr-2"><i className="fa fa-instagram"></i></a>
 
- 
+                            {user ? (<div className="ml-4 dropdown d-inline">
 
+                            
 
+                                <Link to="#!" className="btn dropdown-toggle text-white mr-4" type="button" id="dropDownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <figure className="avatar avatar-nav">
+                                        <img
+                                            src={user.avatar && user.avatar.url}
+                                            alt={user && user.name}
+                                            className="rounded-circle"
+                                        />
+                                    </figure>
+                                    <span>{user && user.name}</span>
+                                </Link>
+
+                                <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
+                                    {user && user.role === 'admin' && (
+                                        <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                                    )}
+                                    <Link className="dropdown-item" to="/orders/me">Orders</Link>
+                                    <Link className="dropdown-item" to="/me">Profile</Link>
+
+                                    <Link
+                                        className="dropdown-item text-danger" to="/" onClick={logoutHandler}
+                                    >
+                                        Logout
+                                    </Link>
+                                </div>
+                                
+                                
+                                </div>) : (
+                                            
+                                            <div>
+                                                <Link to="/login" className="btn ml-1" id="login_btn">Login</Link> <a style={{ color: 'white' }}>|</a>
+                                                <Link to="/register" className="btn ml-1" id="signup_btn"> Sign Up</Link>
+                                            </div>
+                                            )}
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
 
             <nav className="navbar row justify-content-center">
