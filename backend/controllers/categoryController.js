@@ -51,6 +51,21 @@ exports.newCategory = async (req, res, next) => {
     category,
   });
   };
+
+  exports.deleteCategory = async (req, res, next) => {
+    const category = await Category.findByIdAndDelete(req.params.id);
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    // await product.remove();
+    res.status(200).json({
+      success: true,
+      message: "Category deleted",
+    });
+  };
   
   exports.updateCategory = async (req, res, next) => {
 
