@@ -82,7 +82,9 @@ const OrderDetails = () => {
                 
                     <div className="row d-flex justify-content-between">
                         <div className="col-12 col-lg-8 mt-5 order-details">
-                        <h4 className="mb-4">Shipping Info</h4>
+                        <h1 className="mb-4">TikTech.shop</h1>
+                        <h2 className="mb-4">Shipping Info</h2>
+                        <h3 className="my-5">Order # {order._id}</h3>
                         <h5 className="mb-4">Receiver</h5>
                         
                             <table className='table table-bordered'>
@@ -149,7 +151,7 @@ const OrderDetails = () => {
                                             <p>{item.quantity} Piece(s)</p>
                                         </div>
                                         
-                                        <h1 className="my-5">Order # {order._id}</h1>
+                                       
                                     </div>
                                     
                                 ))}
