@@ -70,8 +70,10 @@ const Header = ({ cartItems }) => {
                                 Logout
                             </Link>
                         </div>
-                    </div>) : <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>
-                    } 
+                        
+                    </div>) : <Link to="/login" className="btn ml-1" id="login_btn">Login</Link> 
+                    }<a style={{ color: 'white' }}>|</a>
+                    <Link to="/register" className="btn ml-1" id="logout_btn">Sign Up</Link> 
 
  
 
