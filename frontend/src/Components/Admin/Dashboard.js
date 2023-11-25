@@ -13,6 +13,7 @@ import UserSalesChart from './UserSalesChart';
 import MonthlySalesChart from './MonthlySalesChart';
 import ProductSalesChart from './ProductSalesChart';
 
+  
 const Dashboard = () => {
 
     const [products, setProducts] = useState([])
@@ -56,6 +57,7 @@ const Dashboard = () => {
     return (
         <Fragment>
             <div className="row">
+                
                 <div className="col-12 col-md-2">
                     <Sidebar />
                 </div>
@@ -66,7 +68,7 @@ const Dashboard = () => {
                     {loading ? <Loader /> : (
                         <Fragment>
                             <MetaData title={'Admin Dashboard'} />
-
+                        
                             <div className="row pr-4">
                                 <div className="col-xl-12 col-sm-12 mb-3">
                                     <div className="card text-white bg-primary o-hidden h-100">
@@ -137,6 +139,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
+                            
                             <UserSalesChart />
                             <MonthlySalesChart />
                             <ProductSalesChart />
