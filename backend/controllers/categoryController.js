@@ -1,5 +1,6 @@
 const Category = require('../models/category')
 const cloudinary = require('cloudinary')
+const APIFeatures = require("../utils/apiFeatures");
 
 exports.getCategory = async (req, res, next) => {
     const category = await Category.find()
@@ -114,4 +115,11 @@ exports.newCategory = async (req, res, next) => {
       category,
     });
   };
+  exports.listCategory = async (req, res, next) => {
+    const categorys = await Category.find();
   
+    res.status(200).json({
+      success: true,
+      categorys,
+    });
+  };
