@@ -85,11 +85,6 @@ const CategoryList = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Image',
-                    field: 'image',
-                    sort: 'asc'
-                },
-                {
                     label: 'Actions',
                     field: 'actions',
                 },
@@ -124,7 +119,7 @@ const CategoryList = () => {
                 </div>
                 <div className="col-12 col-md-10">
                     <Fragment>
-                        <h1 className="my-5">All Category</h1>
+                        <h1 className="my-4">All Category</h1>
                         <button className='procreate  ml-auto'>
                         <Link to="/admin/category/new" className="procreate"><i className="fa fa-plus"></i>Create a Category</Link>
                         </button>
