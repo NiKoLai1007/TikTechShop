@@ -115,31 +115,20 @@ exports.newProduct = async (req, res, next) => {
 		images = req.body.images
 	}
 
-<<<<<<< HEAD
-  for (let i = 0; i < images.length; i++) {
-    let imageDataUri = images[i];
-    
-    try {
-      const result = await cloudinary.v2.uploader.upload(`${imageDataUri}`, {
-        folder: "products",
-        width: 150,
-        crop: "scale",
-      });
-      console.log(result);
-=======
 	let imagesLinks = [];
->>>>>>> 91d596a3ced51b46c4500ec9076ab5d78618b0a7
 
 	for (let i = 0; i < images.length; i++) {
 		let imageDataUri = images[i]
 		// console.log(imageDataUri)
 		try {
-			const result = await cloudinary.v2.uploader.upload(`${imageDataUri}`, {
-				folder: 'products',
-				width: 150,
-				crop: "scale",
-			});
-	
+      const result = await cloudinary.v2.uploader.upload(`${imageDataUri}`, {
+        folder: "products",
+        width: 150,
+        crop: "scale",
+     });
+     
+     console.log(result); 
+     
 			 imagesLinks.push({
 				public_id: result.public_id,
 				url: result.secure_url
