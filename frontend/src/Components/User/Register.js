@@ -30,23 +30,14 @@ const Register = () => {
 
         // Basic validation
         const validationErrors = {};
-        if (!name.trim()) {
+        if (!name || !name.trim()) {
             validationErrors.name = 'Name is required';
         }
-        if (!email.trim()) {
+        if (!email || !email.trim()) {
             validationErrors.email = 'Email is required';
         }
-        if (!password.trim()) {
+        if (!password || !password.trim()) {
             validationErrors.password = 'Password is required';
-        }
-
-        // Add avatar validation only if any field is filled
-        if (Object.values(user).some(value => value !== '')) {
-            if (!avatar) {
-                validationErrors.avatar = 'Avatar is required';
-            } else if (!avatar.type.startsWith('image/')) {
-                validationErrors.avatar = 'Please choose a valid image file';
-            }
         }
 
         if (Object.keys(validationErrors).length > 0) {
@@ -64,9 +55,18 @@ const Register = () => {
     };
 
     const onChange = (e) => {
-        setErrors({ ...errors, [e.target.name]: '' });
+        if (!e.target) {
+            return;
+        }
+
+        setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: '' }));
 
         if (e.target.name === 'avatar') {
+            const file = e.target.files && e.target.files[0];
+            if (!file) {
+                return;
+            }
+
             const reader = new FileReader();
 
             reader.onload = () => {
@@ -76,9 +76,9 @@ const Register = () => {
                 }
             };
 
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(file);
         } else {
-            setUser({ ...user, [e.target.name]: e.target.value });
+            setUser((prevUser) => ({ ...prevUser, [e.target.name]: e.target.value }));
         }
     };
 
@@ -176,15 +176,14 @@ const Register = () => {
                                     <input
                                         type="file"
                                         name="avatar"
-                                        className={`custom-file-input ${errors.avatar ? 'is-invalid' : ''}`}
+                                        className="custom-file-input"
                                         id="customFile"
-                                        accept="image/*"
+                                        accept="images/*"
                                         onChange={onChange}
                                     />
                                     <label className="custom-file-label" htmlFor="customFile">
                                         Choose Avatar
                                     </label>
-                                    {errors.avatar && <div className="invalid-feedback">{errors.avatar}</div>}
                                 </div>
                             </div>
                         </div>
@@ -192,7 +191,7 @@ const Register = () => {
                         <button id="register_button" type="submit" className="btn btn-block py-3">
                             REGISTER
                         </button>
-                        <Link to="/login" className="float-right mt-3">
+                        <Link to="/register" className="float-right mt-3">
                             Already Have an Account?
                         </Link>
 
