@@ -34,6 +34,7 @@ import ProductReviews from './Components/Admin/ProductReviews';
 import CategoryList from './Components/Admin/CategoryList';
 import NewCategory from './Components/Admin/newCategory';
 import UpdateCategory from './Components/Admin/UpdateCategory';
+import BrandList from './Components/Admin/BrandList';
 
 function App() {
   const [state, setState] = useState({
@@ -180,7 +181,10 @@ function App() {
             path="/admin/category/:id"
             element={<UpdateCategory/>} 
             />
-
+             <Route
+            path="/admin/brand"
+            element={<BrandList/>} 
+            />
           <Route
           path="/admin/reviews"
           element={
