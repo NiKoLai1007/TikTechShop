@@ -25,6 +25,9 @@ body {
   margin: 8px; 
 }
 
+#figure {
+  align-items: top;
+}
 
 
 .custom-link {
@@ -508,6 +511,7 @@ a {
 .avatar-profile {
   height: 16rem;
   width: 16rem;
+
 }
 
 .user-info h4 {
@@ -716,5 +720,31 @@ ul.CTAs a {
 .review_user {
   font-size: 0.8rem;
   color: grey;
+}
+
+.card {
+  position: relative;
+}
+
+
+.avatar-container {
+  position: absolute;
+  top: 50%;
+  bottom: 30%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.prof {
+  color: black;
+  top: 100%;
+  bottom: 100%;
+  left: 150%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  display: flex;
+  flex-direction: column;
+  
 }
 

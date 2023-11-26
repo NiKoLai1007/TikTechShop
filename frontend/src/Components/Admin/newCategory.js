@@ -116,7 +116,7 @@ const NewCategory = () => {
                                             className='custom-file-input'
                                             id='customFile'
                                             onChange={onChange}
-                                        
+                                        multiple
                                         />
                                         <label className='custom-file-label' htmlFor='customFile'>
                                             Choose Images

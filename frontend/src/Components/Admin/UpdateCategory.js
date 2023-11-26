@@ -33,7 +33,7 @@ const UpdateCategory = () => {
     const getCategoryDetails = async (id) => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4001/api/v1/category/${id}`
+          `http://localhost:4001/api/v1/admin/category/${id}`
         );
         setCategory(data.category);
         setLoading(false);
