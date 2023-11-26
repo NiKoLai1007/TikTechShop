@@ -102,9 +102,7 @@ const Header = ({ cartItems }) => {
                 <div className="col-12 col-md-8 mt-2 mt-md-0 ">
                     <Search />
                 </div>
-                
-
-                <div className="col-12 col-md-1 text-left">
+                <div className="col-12 col-md-1 text-left ">
                     <Link to="/cart" style={{ textDecoration: 'none' }} className="cart-container">
                         <span id="cart" className="ml-4">
                             <FaShoppingCart />
@@ -115,8 +113,6 @@ const Header = ({ cartItems }) => {
                             </span>
                         )}
                     </Link>
-                    
-
                 </div>
             </nav>
         </Fragment>
