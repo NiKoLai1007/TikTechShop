@@ -208,7 +208,7 @@ const NewProduct = () => {
                                     className="btn btn-block py-3"
                                 // disabled={loading ? true : false}
                                 >
-                                    CREATE
+                                    CREATE PRODUCT
                                 </button>
 
                             </form>
