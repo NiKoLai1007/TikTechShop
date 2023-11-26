@@ -56,7 +56,7 @@ const Dashboard = () => {
 
     return (
         <Fragment>
-            <div className="row">
+            <div className="row_1 row">
                 
                 <div className="col-12 col-md-2">
                     <Sidebar />
@@ -69,14 +69,15 @@ const Dashboard = () => {
                         <Fragment>
                             <MetaData title={'Admin Dashboard'} />
                         
-                           
+                
                                         <div className="card-body">
-                                        <h1 className="my-5">Dashboard</h1>
+                                        <h1 className="dashboard">Dashboard</h1>
+                                        <h6 className='dashboard'> Welcome to TicTech Dashboard</h6>
                                         </div>
-                                   
+                                  
                             <div className="row pr-4">
                                 <div className="col-xl-3 col-sm-6 mb-3">
-                                    <div className="card text-white bg-success o-hidden h-100">
+                                    <div className=" card_1 card text-white  o-hidden h-100">
                                         <div className="card-body">
                                             <div className="text-center card-font-size">Products<br /> <b>{products && products.length}</b></div>
                                         </div>
@@ -90,7 +91,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="col-xl-3 col-sm-6 mb-3">
-                                    <div className="card text-white bg-danger o-hidden h-100">
+                                    <div className="card_1 card text-white o-hidden h-100">
 
                                         <div className="card-body">
                                             <div className="text-center card-font-size">Orders<br /> <b>{orders && orders.length}</b></div>
@@ -107,7 +108,7 @@ const Dashboard = () => {
 
 
                                 <div className="col-xl-3 col-sm-6 mb-3">
-                                    <div className="card text-white bg-info o-hidden h-100">
+                                    <div className="card_1 card text-white o-hidden h-100">
 
                                         <div className="card-body">
                                             <div className="text-center card-font-size">Users<br /> <b>{users && users.length}</b></div>
@@ -122,11 +123,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="col-xl-3 col-sm-6 mb-3">
-                                    <div className="card text-white bg-warning o-hidden h-100">
-                                        {/*<div className="card-body">
-                                            <div className="text-center card-font-size">Out of Stock<br /> <b>0</b></div>
-                                        </div>*/}
-
+                                    <div className="card_1 card text-white  o-hidden h-100">
                                         <div className="card-body">
                                             <div className="text-center card-font-size">Out of Stock<br /> <b>{outOfStock}</b></div>
                                         </div>
@@ -137,7 +134,11 @@ const Dashboard = () => {
                             <div className="row pr-5">
 
                             <div className="col-xl-8 col-md-5 mb-2">
-                                <div className="card text-white bg-primary o-hidden h-100">
+                                <div className="card_2 card text-white o-hidden h-100">
+                                <div className="card-header">
+                                <i className="fas fa-chart-pie me-1"></i>
+                                Monthly Sales Chart
+                                </div>
                                 <div className="card-body">
                                     <MonthlySalesChart />
                                 </div>
@@ -145,7 +146,11 @@ const Dashboard = () => {
                             </div>
                             
                             <div className="col-xl-4 col-md-6 mb-2">
-                                <div className="card text-white bg-primary o-hidden h-100">
+                                <div className="card_2 card text-white o-hidden h-100">
+                                <div className="card-header">
+                                <i className="fas fa-chart-pie me-1"></i>
+                               User Sales Chart
+                                </div>
                                 <div className="card-body">
                                     <UserSalesChart />
                                 </div>
@@ -154,8 +159,12 @@ const Dashboard = () => {
 
                             
 
-                            <div className="col-xl-5 col-md-5 mb-1">
-                                <div className="card text-white bg-primary o-hidden h-100">
+                            <div className="col-xl col-md-6 mb-1">
+                                <div className="card_2 card text-white o-hidden h-100">
+                                <div className="card-header">
+                                <i className="fas fa-chart-pie me-1"></i>
+                               Product Sales Status
+                                </div>
                                 <div className="card-body">
                                     <ProductSalesChart />
                                 </div>

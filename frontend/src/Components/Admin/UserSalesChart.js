@@ -34,7 +34,7 @@ const UserSalesChart = ({ data }) => {
             setError(error.response.data.message)
         }
     }
-    const barColors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
+    const barColors = ["#FFFFFF", "#FFFFFF", "#FFFFFF"]
     useEffect(() => {
         userSales()
         // allUsers()
@@ -45,11 +45,11 @@ const UserSalesChart = ({ data }) => {
             {loading ? <Loader /> : (<BarChart data={sales} >
                 <CartesianGrid strokeDasharray="2 2" />
                 <XAxis dataKey="userDetails.name" />
-                <YAxis />
-                <Tooltip />
+                <YAxis tick={{ fill: '#ffffff' }} />
+                <Tooltip contentStyle={{ color: '#ffffff' }} />
                 <Legend />
 
-                <Bar dataKey="total" stroke="#000000"
+                <Bar dataKey="total" stroke="#fffff "
                     strokeWidth={5} >
                     {
                         sales.map((item, index) => (

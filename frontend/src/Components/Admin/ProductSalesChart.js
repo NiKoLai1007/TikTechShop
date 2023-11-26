@@ -77,7 +77,7 @@ export default function ProductSalesChart({ data }) {
                     data={sales}
                     cx="50%"
                     cy="50%"
-                    outerRadius={100}
+                    outerRadius={150}
                     fill="#8884d8"
                     label={renderCustomizedLabel}
                     labelLine={false}
@@ -87,7 +87,7 @@ export default function ProductSalesChart({ data }) {
                     }
                 </Pie>
                 <Tooltip />
-                <Legend layout="vertical" verticalAlign="top" align="center" />
+                <Legend layout="vertical" verticalAlign="top" align="left" />
             </PieChart>
         </ResponsiveContainer>
 
