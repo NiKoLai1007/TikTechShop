@@ -23,11 +23,57 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true)
     const [totalAmount, setTotalAmount] = useState([])
     let outOfStock = 0;
+
+   
+    const getOrders = async () => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${getToken()}`
+                }
+            };
+    
+            const { data } = await axios.get(`http://localhost:4001/api/v1/admin/orders`, config);
+            setOrders(data.orders);
+    
+      
+    
+            console.log(data.orders);
+        } catch (error) {
+            console.error(error);
+            // Handle the error as needed
+        }
+    };
+
+    const getUsers = async () => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${getToken()}`
+                }
+            };
+    
+            const { data } = await axios.get(`http://localhost:4001/api/v1/admin/users`, config);
+            setUsers(data.users);
+    
+      
+    
+            console.log(data.users);
+        } catch (error) {
+            console.error(error);
+            // Handle the error as needed
+        }
+    };
+    
     products.forEach(product => {
         if (product.stock === 0) {
             outOfStock += 1;
         }
     })
+
+    
     const getAdminProducts = async () => {
         try {
 
@@ -50,8 +96,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         getAdminProducts()
-        // allOrders()
-        // allUsers()
+         getOrders()
+        getUsers()
     }, [])
 
     return (
@@ -78,10 +124,25 @@ const Dashboard = () => {
                             <div className="row pr-4">
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className=" card_1 card text-white  o-hidden h-100">
-                                        <div className="card-body">
+                                        {/* <div className="card-body">
                                             <div className="text-center card-font-size">Products<br /> <b>{products && products.length}</b></div>
+                                        </div> */}
+                                         <div className="row">
+                                    <div className="col-md-6">
+                                        
+                                        <div className="card-body">
+                                        <div className="text-center card-font-size">Products<br /> <b>{products && products.length}</b></div>
                                         </div>
-
+                                    </div>
+                                    
+                                    <div className="col-md-6">
+                                    <img
+                                        src="/images/1-removebg-preview.png"  
+                                        alt="User Image"
+                                        className="img-fluid"  
+                                    />
+                                    </div>
+                                    </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/products">
                                             <span className="float-left">View Details</span>
                                             <span className="float-right">
@@ -93,9 +154,23 @@ const Dashboard = () => {
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card_1 card text-white o-hidden h-100">
 
+                                      
+                                         <div className="row">
+                                    <div className="col-md-6">
+                                        
                                         <div className="card-body">
-                                            <div className="text-center card-font-size">Orders<br /> <b>{orders && orders.length}</b></div>
+                                        <div className="text-center card-font-size">Orders<br /> <b>{orders && orders.length}</b></div>
                                         </div>
+                                    </div>
+                                    
+                                    <div className="col-md-6">
+                                    <img
+                                        src="/images/2-removebg-preview.png"  
+                                        alt="User Image"
+                                        className="img-fluid"  
+                                    />
+                                    </div>
+                                    </div>
 
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
                                             <span className="float-left">View Details</span>
@@ -110,9 +185,23 @@ const Dashboard = () => {
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card_1 card text-white o-hidden h-100">
 
+                                    <div className="row">
+                                    <div className="col-md-6">
+                                        
                                         <div className="card-body">
-                                            <div className="text-center card-font-size">Users<br /> <b>{users && users.length}</b></div>
+                                        <div className="text-center card-font-size">Users<br /><b>{users.length}</b></div>
                                         </div>
+                                    </div>
+                                    
+                                    <div className="col-md-6">
+                                    <img
+                                        src="/images/4-removebg-preview.png"  
+                                        alt="User Image"
+                                        className="img-fluid"  
+                                    />
+                                    </div>
+                                    </div>
+
 
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/users">
                                             <span className="float-left">View Details</span>
@@ -124,8 +213,22 @@ const Dashboard = () => {
                                 </div>
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card_1 card text-white  o-hidden h-100">
-                                        <div className="card-body">
+                                    
+                                            <div className="row">
+                                        <div className="col-md-6">
+                                            
+                                            <div className="card-body">
                                             <div className="text-center card-font-size">Out of Stock<br /> <b>{outOfStock}</b></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="col-md-6">
+                                        <img
+                                            src="/images/3-removebg-preview.png"  
+                                            alt="User Image"
+                                            className="img-fluid"  
+                                        />
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
