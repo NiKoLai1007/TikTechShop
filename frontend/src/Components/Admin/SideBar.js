@@ -66,7 +66,11 @@ const Sidebar = () => {
               <i className="fa fa-product-hunt"></i> Products
             </Link>
           </li>
-
+          <li>
+            <Link to="/admin/Category" style={{ fontSize: '1.2rem' }}>
+              <i className="fa fa-list"></i> Category
+            </Link>
+          </li>
 
           <li>
             <Link to="/admin/orders" style={{ fontSize: '1.2rem' }}>
@@ -88,7 +92,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="sb-sidenav-footer">
-        <div className="small" style={{ fontSize: '1rem' }}>Logged in as:</div>
+        <div className="small " style={{ fontSize: '1rem' }}>Logged in as:</div>
         Admin
       </div>
     </nav>
