@@ -35,17 +35,56 @@ const Register = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
+<<<<<<< HEAD
+=======
+        // Basic validation
+        const validationErrors = {};
+        if (!name || !name.trim()) {
+            validationErrors.name = 'Name is required';
+        }
+        if (!email || !email.trim()) {
+            validationErrors.email = 'Email is required';
+        }
+        if (!password || !password.trim()) {
+            validationErrors.password = 'Password is required';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+>>>>>>> b265d451e24f428aac5af3d6bdf13bfd99553b48
         const formData = new FormData();
         formData.set('name', name);
         formData.set('email', email);
         formData.set('password', password);
         formData.set('avatar', avatar);
 
+<<<<<<< HEAD
         register(formData)
     }
+=======
+        register(formData);
+    };
+
+    const onChange = (e) => {
+        if (!e.target) {
+            return;
+        }
+
+        setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: '' }));
+>>>>>>> b265d451e24f428aac5af3d6bdf13bfd99553b48
 
     const onChange = e => {
         if (e.target.name === 'avatar') {
+<<<<<<< HEAD
+=======
+            const file = e.target.files && e.target.files[0];
+            if (!file) {
+                return;
+            }
+>>>>>>> b265d451e24f428aac5af3d6bdf13bfd99553b48
 
             const reader = new FileReader();
 
@@ -58,8 +97,14 @@ const Register = () => {
 
             reader.readAsDataURL(e.target.files[0])
 
+<<<<<<< HEAD
         } else {
             setUser({ ...user, [e.target.name]: e.target.value })
+=======
+            reader.readAsDataURL(file);
+        } else {
+            setUser((prevUser) => ({ ...prevUser, [e.target.name]: e.target.value }));
+>>>>>>> b265d451e24f428aac5af3d6bdf13bfd99553b48
         }
     }
 
@@ -156,10 +201,17 @@ const Register = () => {
                                 </div>
                                 <div className='custom-file'>
                                     <input
+<<<<<<< HEAD
                                         type='file'
                                         name='avatar'
                                         className='custom-file-input'
                                         id='customFile'
+=======
+                                        type="file"
+                                        name="avatar"
+                                        className="custom-file-input"
+                                        id="customFile"
+>>>>>>> b265d451e24f428aac5af3d6bdf13bfd99553b48
                                         accept="images/*"
                                         onChange={onChange}
                                     />
@@ -178,6 +230,14 @@ const Register = () => {
                         >
                             REGISTER
                         </button>
+<<<<<<< HEAD
+=======
+                        <Link to="/register" className="float-right mt-3">
+                            Already Have an Account?
+                        </Link>
+
+                        {errors.general && <div className="text-danger mt-3">{errors.general}</div>}
+>>>>>>> b265d451e24f428aac5af3d6bdf13bfd99553b48
                     </form>
                 </div>
             </div>
