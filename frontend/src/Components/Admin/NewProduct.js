@@ -1,115 +1,116 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import MetaData from '../Layout/Metadata'
-import Sidebar from './SideBar'
+import React, { Fragment, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Metadata from '../Layout/Metadata';
+import Sidebar from './SideBar';
 import { getToken } from '../../utils/helpers';
-import axios from 'axios'
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewProduct = () => {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [stock, setStock] = useState(0);
+  const [seller, setSeller] = useState('');
+  const [images, setImages] = useState([]);
+  const [imagesPreview, setImagesPreview] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState('');
+  const [product, setProduct] = useState({});
 
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState(0);
-    const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
-    const [stock, setStock] = useState(0);
-    const [seller, setSeller] = useState('');
-    const [images, setImages] = useState([]);
-    const [imagesPreview, setImagesPreview] = useState([])
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
-    const [success, setSuccess] = useState('')
-    const [product, setProduct] = useState({})
+  const categories = [
+    'Kids Watch',
+    'Mens Watch',
+    'Womens Watch',
+    'Sports Watch',
+    'Smart Watch',
+  ];
 
-    const categories = [
-        'Kids Watch',
-        'Mens Watch',
-        'Womens Watch',
-        'Sports Watch',
-        'Smart Watch',
-    ]
+  let navigate = useNavigate();
 
-    let navigate = useNavigate()
-    
-    const submitHandler = (e) => {
-        e.preventDefault();
+  const submitHandler = (e) => {
+    e.preventDefault();
 
-        const formData = new FormData();
-        formData.set('name', name);
-        formData.set('price', price);
-        formData.set('description', description);
-        formData.set('category', category);
-        formData.set('stock', stock);
-        formData.set('seller', seller);
+    const formData = new FormData();
+    formData.set('name', name);
+    formData.set('price', price);
+    formData.set('description', description);
+    formData.set('category', category);
+    formData.set('stock', stock);
+    formData.set('seller', seller);
 
-        images.forEach(image => {
-            formData.append('images', image)
-        })
-        
-        newProduct(formData)
+    images.forEach((image) => {
+      formData.append('images', image);
+    });
+
+    newProduct(formData);
+  };
+
+  const onChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImagesPreview([]);
+    setImages([]);
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((oldArray) => [...oldArray, reader.result]);
+          setImages((oldArray) => [...oldArray, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const newProduct = async (formData) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getToken()}`,
+        },
+      };
+
+      console.log('Form Data:', formData); // Log form data before sending
+
+      const { data } = await axios.post(
+        `http://localhost:4001/api/v1/admin/product/new`,
+        formData,
+        config
+      );
+
+      setLoading(false);
+      setSuccess(data.success);
+      setProduct(data.product);
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data?.message || 'Something went wrong');
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
 
-    const onChange = e => {
-        const files = Array.from(e.target.files)
-        setImagesPreview([]);
-        setImages([])
-        files.forEach(file => {
-            const reader = new FileReader();
-            reader.onload = () => {
-                if (reader.readyState === 2) {
-                    setImagesPreview(oldArray => [...oldArray, reader.result])
-                    setImages(oldArray => [...oldArray, reader.result])
-                }
-            }
-            
-            reader.readAsDataURL(file)
-            // console.log(reader)
-        })
-       
+    if (success) {
+      navigate('/admin/products');
+      toast.success('Product created successfully', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
-    const newProduct = async (formData) => {
-       
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getToken()}`
-                }
-            }
+  }, [error, success, navigate]);
 
-            const { data } = await axios.post(`http://localhost:4001/api/v1/admin/product/new`, formData, config)
-            setLoading(false)
-            setSuccess(data.success)
-            setProduct(data.product)
-        } catch (error) {
-            setError(error.response.data.message)
-
-        }
-    }
-    useEffect(() => {
-
-        if (error) {
-            toast.error(error, {
-                position: toast.POSITION.BOTTOM_RIGHT
-            });
-        }
-
-        if (success) {
-            navigate('/admin/products');
-            toast.success('Product created successfully', {
-                position: toast.POSITION.BOTTOM_RIGHT
-            })
-
-        }
-
-    }, [error, success,])
-
-
-    return (
-        <Fragment>
-            <MetaData title={'New Product'} />
-            <div className="row">
+  return (
+    <Fragment>
+      <Metadata title={'New Product'} />
+      <div className="row">
                 <div className="col-12 col-md-2">
                     <Sidebar />
                 </div>
@@ -208,7 +209,7 @@ const NewProduct = () => {
                                     className="btn btn-block py-3"
                                 // disabled={loading ? true : false}
                                 >
-                                    CREATE PRODUCT
+                                    CREATE
                                 </button>
 
                             </form>
@@ -216,8 +217,8 @@ const NewProduct = () => {
                     </Fragment>
                 </div>
             </div>
+    </Fragment>
+  );
+};
 
-        </Fragment>
-    )
-}
-export default NewProduct
+export default NewProduct;
