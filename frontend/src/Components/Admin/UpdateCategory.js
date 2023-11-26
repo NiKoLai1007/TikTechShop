@@ -9,12 +9,11 @@ import { getToken } from "../../utils/helpers";
 
 const UpdateCategory = () => {
     const [name, setName] = useState("");
-    const [category, setCategory] = useState("");
     const [images, setImages] = useState([]);
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
     const [error, setError] = useState("");
-    // const [category, setCategory] = useState({});
+     const [category, setCategory] = useState("");
     const [loading, setLoading] = useState(true);
     const [updateError, setUpdateError] = useState("");
     const [isUpdated, setIsUpdated] = useState(false);
@@ -112,7 +111,7 @@ const UpdateCategory = () => {
           errMsg(updateError);
         }
         if (isUpdated) {
-          navigate("/admin/categories");
+          navigate("/admin/category");
           successMsg("category updated successfully");
         }
       }, [error, isUpdated, updateError, category, id]);
