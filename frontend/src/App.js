@@ -35,6 +35,9 @@ import CategoryList from './Components/Admin/CategoryList';
 import NewCategory from './Components/Admin/newCategory';
 import UpdateCategory from './Components/Admin/UpdateCategory';
 import BrandList from './Components/Admin/BrandList';
+import NewBrand from './Components/Admin/NewBrand';
+import UpdateBrand from './Components/Admin/UpdateBrand';
+
 
 function App() {
   const [state, setState] = useState({
@@ -184,6 +187,14 @@ function App() {
              <Route
             path="/admin/brand"
             element={<BrandList/>} 
+            />
+             <Route
+            path="/admin/brand/new"
+            element={<NewBrand/>} 
+            />
+            <Route
+            path="/admin/brand/:id"
+            element={<UpdateBrand/>} 
             />
           <Route
           path="/admin/reviews"
