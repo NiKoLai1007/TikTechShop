@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UserSalesChart from './UserSalesChart';
 import MonthlySalesChart from './MonthlySalesChart';
 import ProductSalesChart from './ProductSalesChart';
+import UserCharts from './UserCharts'
 
   
 const Dashboard = () => {
@@ -239,7 +240,7 @@ const Dashboard = () => {
                             <div className="col-xl-8 col-md-5 mb-2">
                                 <div className="card_2 card text-white o-hidden h-100">
                                 <div className="card-header">
-                                <i className="fas fa-chart-pie me-1"></i>
+                                <i className="fas fa-chart-bar me-1"></i>
                                 Monthly Sales Chart
                                 </div>
                                 <div className="card-body">
@@ -251,7 +252,7 @@ const Dashboard = () => {
                             <div className="col-xl-4 col-md-6 mb-2">
                                 <div className="card_2 card text-white o-hidden h-100">
                                 <div className="card-header">
-                                <i className="fas fa-chart-pie me-1"></i>
+                                <i className="fas fa-chart-bar me-1"></i>
                                User Sales Chart
                                 </div>
                                 <div className="card-body">
@@ -260,9 +261,22 @@ const Dashboard = () => {
                                 </div>
                             </div>
 
+
+                            <div className="col-xl-12 col-md-6 mb-2">
+                                <div className="card_2 card text-white o-hidden h-100">
+                                <div className="card-header">
+                                <i className="fas fa-chart-line me-1"></i>
+                               User Chart
+                                </div>
+                                <div className="card-body">
+                                    <UserCharts />
+                                </div>
+                                </div>
+                            </div>
+
                             
 
-                            <div className="col-xl col-md-6 mb-1">
+                            <div className="col-xl-12 col-md-6 mb-1">
                                 <div className="card_2 card text-white o-hidden h-100">
                                 <div className="card-header">
                                 <i className="fas fa-chart-pie me-1"></i>
