@@ -1,24 +1,23 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import MetaData from '../Layout/Metadata'
-import Sidebar from './SideBar'
+import React, { Fragment, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import MetaData from '../Layout/Metadata';
+import Sidebar from './SideBar';
 import { getToken } from '../../utils/helpers';
-import axios from 'axios'
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewCategory = () => {
-
     const [name, setName] = useState('');
     const [images, setImages] = useState([]);
-    const [imagesPreview, setImagesPreview] = useState([])
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
-    const [success, setSuccess] = useState('')
-    const [category, setCategory] = useState({})
+    const [imagesPreview, setImagesPreview] = useState([]);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [success, setSuccess] = useState('');
+    const [category, setCategory] = useState({});
 
     let navigate = useNavigate()
-    
+
     const submitHandler = (e) => {
         e.preventDefault();
 
@@ -28,14 +27,15 @@ const NewCategory = () => {
         images.forEach(image => {
             formData.append('images', image)
         })
-        
-        newCategory(formData)
-    }
 
-    const onChange = e => {
-        const files = Array.from(e.target.files)
+        newCategory(formData);
+    };
+
+    const onChange = (e) => {
+        const files = Array.from(e.target.files);
         setImagesPreview([]);
-        setImages([])
+        setImages([]);
+        
         files.forEach(file => {
             const reader = new FileReader();
             reader.onload = () => {
@@ -48,29 +48,27 @@ const NewCategory = () => {
             reader.readAsDataURL(file)
             // console.log(reader)
         })
-       
-    }
+    };
+
     const newCategory = async (formData) => {
-       
         try {
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${getToken()}`
                 }
-            }
+            };
 
-            const { data } = await axios.post(`http://localhost:4001/api/v1/admin/category/new`, formData, config)
-            setLoading(false)
-            setSuccess(data.success)
-            setCategory(data.category)
+            const { data } = await axios.post(`http://localhost:4001/api/v1/admin/category/new`, formData, config);
+            setLoading(false);
+            setSuccess(data.success);
+            setCategory(data.category);
         } catch (error) {
-            // setError(error.response.data.message)
-
+            setError(error.response.data.message);
         }
-    }
-    useEffect(() => {
+    };
 
+    useEffect(() => {
         if (error) {
             toast.error(error, {
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -78,15 +76,12 @@ const NewCategory = () => {
         }
 
         if (success) {
-            navigate('/admin/');
+            navigate('/admin/Category');
             toast.success('Category created successfully', {
                 position: toast.POSITION.BOTTOM_RIGHT
-            })
-
+            });
         }
-
-    }, [error, success,])
-
+    }, [error, success]);
 
     return (
         <Fragment>
@@ -95,13 +90,11 @@ const NewCategory = () => {
                 <div className="col-12 col-md-2">
                     <Sidebar />
                 </div>
-
                 <div className="col-12 col-md-10">
                     <Fragment>
                         <div className="wrapper my-5">
                             <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
                                 <h1 className="mb-4">New Category</h1>
-
                                 <div className="form-group">
                                     <label htmlFor="name_field">Name</label>
                                     <input
@@ -123,7 +116,7 @@ const NewCategory = () => {
                                             className='custom-file-input'
                                             id='customFile'
                                             onChange={onChange}
-                                            multiple
+                                        
                                         />
                                         <label className='custom-file-label' htmlFor='customFile'>
                                             Choose Images
@@ -136,12 +129,10 @@ const NewCategory = () => {
 
                                 </div>
 
-
                                 <button
                                     id="login_button"
                                     type="submit"
                                     className="btn btn-block py-3"
-                                // disabled={loading ? true : false}
                                 >
                                     CREATE
                                 </button>
@@ -151,8 +142,8 @@ const NewCategory = () => {
                     </Fragment>
                 </div>
             </div>
-
         </Fragment>
-    )
+    );
 }
-export default NewCategory
+
+export default NewCategory;
