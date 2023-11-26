@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
     return (
@@ -25,14 +25,6 @@ const Sidebar = () => {
                     </li>
 
                     <li>
-                        <Link to="/admin/category"><i className="fa fa-list"></i>Category</Link>
-                    </li>
-
-                    <li>
-                        <Link to="/admin/brand"><i className="fa fa-tags"></i>Brand</Link>
-                    </li>
-
-                    <li>
                         <Link to="/admin/orders"><i className="fa fa-shopping-basket"></i> Orders</Link>
                     </li>
 
@@ -43,10 +35,11 @@ const Sidebar = () => {
                     <li>
                         <Link to="/admin/reviews"><i className="fa fa-star"></i> Reviews</Link>
                     </li>
+
                 </ul>
             </nav>
         </div>
-    );
-};
+    )
+}
 
-export default Sidebar;
+export default Sidebar

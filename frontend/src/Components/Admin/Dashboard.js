@@ -63,23 +63,17 @@ const Dashboard = () => {
                 </div>
 
                 <div className="col-12 col-md-10">
-                    <h1 className="my-4">Dashboard</h1>
+                    
 
                     {loading ? <Loader /> : (
                         <Fragment>
                             <MetaData title={'Admin Dashboard'} />
                         
-                            <div className="row pr-4">
-                                <div className="col-xl-12 col-sm-12 mb-3">
-                                    <div className="card text-white bg-primary o-hidden h-100">
+                           
                                         <div className="card-body">
-                                            {/* <div className="text-center card-font-size">Total Amount<br /> <b>${totalAmount && totalAmount.toFixed(2)}</b>
-                                            </div> */}
-
+                                        <h1 className="my-5">Dashboard</h1>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                   
                             <div className="row pr-4">
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card text-white bg-success o-hidden h-100">
@@ -98,9 +92,9 @@ const Dashboard = () => {
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card text-white bg-danger o-hidden h-100">
 
-                                        {/* <div className="card-body">
+                                        <div className="card-body">
                                             <div className="text-center card-font-size">Orders<br /> <b>{orders && orders.length}</b></div>
-                                        </div> */}
+                                        </div>
 
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
                                             <span className="float-left">View Details</span>
@@ -115,9 +109,9 @@ const Dashboard = () => {
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card text-white bg-info o-hidden h-100">
 
-                                        {/* <div className="card-body">
+                                        <div className="card-body">
                                             <div className="text-center card-font-size">Users<br /> <b>{users && users.length}</b></div>
-                                        </div> */}
+                                        </div>
 
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/users">
                                             <span className="float-left">View Details</span>
@@ -140,13 +134,38 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             
-                            <UserSalesChart />
-                            <MonthlySalesChart />
-                            <ProductSalesChart />
+                            <div className="row pr-5">
+
+                            <div className="col-xl-8 col-md-5 mb-2">
+                                <div className="card text-white bg-primary o-hidden h-100">
+                                <div className="card-body">
+                                    <MonthlySalesChart />
+                                </div>
+                                </div>
+                            </div>
+                            
+                            <div className="col-xl-4 col-md-6 mb-2">
+                                <div className="card text-white bg-primary o-hidden h-100">
+                                <div className="card-body">
+                                    <UserSalesChart />
+                                </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <div className="col-xl-5 col-md-5 mb-1">
+                                <div className="card text-white bg-primary o-hidden h-100">
+                                <div className="card-body">
+                                    <ProductSalesChart />
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                         </Fragment>
                     )}
                 </div>
-              
             </div>
         </Fragment >
     )
