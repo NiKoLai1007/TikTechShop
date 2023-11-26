@@ -101,6 +101,7 @@ exports.newProduct = async (req, res, next) => {
         width: 150,
         crop: "scale",
       });
+      console.log(result);
 
       imagesLinks.push({
         public_id: result.public_id,
