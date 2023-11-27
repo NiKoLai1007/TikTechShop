@@ -6,12 +6,15 @@ import { getToken } from '../../utils/helpers';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CategoryList from './CategoryList';
+
 
 const NewProduct = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
+  const [brand, setBrand] = useState(''); // Added brand state
   const [stock, setStock] = useState(0);
   const [seller, setSeller] = useState('');
   const [images, setImages] = useState([]);
@@ -19,15 +22,8 @@ const NewProduct = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState('');
-  const [product, setProduct] = useState({});
-
-  const categories = [
-    'Kids Watch',
-    'Mens Watch',
-    'Womens Watch',
-    'Sports Watch',
-    'Smart Watch',
-  ];
+  const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]); // Added brands state
 
   let navigate = useNavigate();
 
@@ -39,6 +35,7 @@ const NewProduct = () => {
     formData.set('price', price);
     formData.set('description', description);
     formData.set('category', category);
+    formData.set('brand', brand); // Include brand in formData
     formData.set('stock', stock);
     formData.set('seller', seller);
 
@@ -75,24 +72,54 @@ const NewProduct = () => {
         },
       };
 
-      console.log('Form Data:', formData); // Log form data before sending
+      console.log('Form Data:', formData);
 
-      const { data } = await axios.post(
-        `http://localhost:4001/api/v1/admin/product/new`,
-        formData,
-        config
-      );
+      const { data } = await axios.post(`http://localhost:4001/api/v1/admin/product/new`, formData, config);
 
       setLoading(false);
       setSuccess(data.success);
-      setProduct(data.product);
     } catch (error) {
       console.error(error);
       setError(error.response?.data?.message || 'Something went wrong');
     }
   };
 
+  const getCategories = async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getToken()}`,
+        },
+      };
+
+      const { data } = await axios.get(`http://localhost:4001/api/v1/admin/category`, config);
+      setCategories(data.category);
+    } catch (error) {
+      setError(error.response?.data?.message || 'Unable to fetch categories');
+    }
+  };
+
+  const getBrands = async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getToken()}`,
+        },
+      };
+
+      const { data } = await axios.get(`http://localhost:4001/api/v1/admin/brand`, config);
+      setBrands(data.brand);
+    } catch (error) {
+      setError(error.response?.data?.message || 'Unable to fetch brands');
+    }
+  };
+
   useEffect(() => {
+    getCategories();
+    getBrands();
+
     if (error) {
       toast.error(error, {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -105,118 +132,92 @@ const NewProduct = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
+
+    setLoading(false); // Set loading to false after fetching categories and brands
   }, [error, success, navigate]);
 
   return (
     <Fragment>
       <Metadata title={'New Product'} />
       <div className="row">
-                <div className="col-12 col-md-2">
-                    <Sidebar />
+        <div className="col-12 col-md-2">
+          <Sidebar />
+        </div>
+
+        <div className="col-12 col-md-10">
+          <Fragment>
+            <div className="wrapper my-5">
+              <form className="shadow-lg" onSubmit={submitHandler} encType="multipart/form-data">
+                <h1 className="mb-4">New Product</h1>
+
+                <div className="form-group">
+                  <label htmlFor="name_field">Name</label>
+                  <input type="text" id="name_field" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
 
-                <div className="col-12 col-md-10">
-                    <Fragment>
-                        <div className="wrapper my-5">
-                            <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
-                                <h1 className="mb-4">New Product</h1>
-
-                                <div className="form-group">
-                                    <label htmlFor="name_field">Name</label>
-                                    <input
-                                        type="text"
-                                        id="name_field"
-                                        className="form-control"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="price_field">Price</label>
-                                    <input
-                                        type="text"
-                                        id="price_field"
-                                        className="form-control"
-                                        value={price}
-                                        onChange={(e) => setPrice(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="description_field">Description</label>
-                                    <textarea className="form-control" id="description_field" rows="8" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="category_field">Category</label>
-                                    <select className="form-control" id="category_field" value={category} onChange={(e) => setCategory(e.target.value)}>
-                                        {categories.map(category => (
-                                            <option key={category} value={category} >{category}</option>
-                                        ))}
-
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="stock_field">Stock</label>
-                                    <input
-                                        type="number"
-                                        id="stock_field"
-                                        className="form-control"
-                                        value={stock}
-                                        onChange={(e) => setStock(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="seller_field">Seller Name</label>
-                                    <input
-                                        type="text"
-                                        id="seller_field"
-                                        className="form-control"
-                                        value={seller}
-                                        onChange={(e) => setSeller(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className='form-group'>
-                                    <label>Images</label>
-
-                                    <div className='custom-file'>
-                                        <input
-                                            type='file'
-                                            name='images'
-                                            className='custom-file-input'
-                                            id='customFile'
-                                            onChange={onChange}
-                                            multiple
-                                        />
-                                        <label className='custom-file-label' htmlFor='customFile'>
-                                            Choose Images
-                                        </label>
-                                    </div>
-
-                                    {imagesPreview.map(img => (
-                                        <img src={img} key={img} alt="Images Preview" className="mt-3 mr-2" width="55" height="52" />
-                                    ))}
-
-                                </div>
-
-
-                                <button
-                                    id="login_button"
-                                    type="submit"
-                                    className="btn btn-block py-3"
-                                // disabled={loading ? true : false}
-                                >
-                                    CREATE
-                                </button>
-
-                            </form>
-                        </div>
-                    </Fragment>
+                <div className="form-group">
+                  <label htmlFor="price_field">Price</label>
+                  <input type="text" id="price_field" className="form-control" value={price} onChange={(e) => setPrice(e.target.value)} />
                 </div>
+
+                <div className="form-group">
+                  <label htmlFor="description_field">Description</label>
+                  <textarea className="form-control" id="description_field" rows="8" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="category_field">Category</label>
+                  <select className="form-control" id="category_field" value={category} onChange={(e) => setCategory(e.target.value)}>
+                    {categories.map((cat) => (
+                      <option key={cat._id} value={cat._id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="brand_field">Brand</label>
+                  <select className="form-control" id="brand_field" value={brand} onChange={(e) => setBrand(e.target.value)}>
+                    {brands.map((brd) => (
+                      <option key={brd._id} value={brd._id}>
+                        {brd.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="stock_field">Stock</label>
+                  <input type="number" id="stock_field" className="form-control" value={stock} onChange={(e) => setStock(e.target.value)} />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="seller_field">Seller Name</label>
+                  <input type="text" id="seller_field" className="form-control" value={seller} onChange={(e) => setSeller(e.target.value)} />
+                </div>
+
+                <div className="form-group">
+                  <label>Images</label>
+                  <div className="custom-file">
+                    <input type="file" name="images" className="custom-file-input" id="customFile" onChange={onChange} multiple />
+                    <label className="custom-file-label" htmlFor="customFile">
+                      Choose Images
+                    </label>
+                  </div>
+                  {imagesPreview.map((img) => (
+                    <img src={img} key={img} alt="Images Preview" className="mt-3 mr-2" width="55" height="52" />
+                  ))}
+                </div>
+
+                <button id="login_button" type="submit" className="btn btn-block py-3">
+                  CREATE
+                </button>
+              </form>
             </div>
+          </Fragment>
+        </div>
+      </div>
     </Fragment>
   );
 };

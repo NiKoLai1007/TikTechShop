@@ -784,6 +784,11 @@ ul.CTAs a {
   flex-direction: column;
   
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
 
 .center-content {
   display: flex;
