@@ -24,6 +24,7 @@ const UpdateProduct = () => {
     const [loading, setLoading] = useState(true)
     const [updateError, setUpdateError] = useState('')
     const [isUpdated, setIsUpdated] = useState(false)
+    
 
     const categories = [
         'Electronics',
