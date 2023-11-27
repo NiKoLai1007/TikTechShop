@@ -73,6 +73,12 @@ const Sidebar = () => {
           </li>
 
           <li>
+            <Link to="/admin/brand" style={{ fontSize: '1.2rem' }}>
+              <i className="fa fa-tag"></i> Brands
+            </Link>
+          </li>
+
+          <li>
             <Link to="/admin/orders" style={{ fontSize: '1.2rem' }}>
               <i className="fa fa-shopping-basket"></i> Orders
             </Link>
