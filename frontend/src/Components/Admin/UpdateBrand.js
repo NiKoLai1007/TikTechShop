@@ -57,7 +57,7 @@ const UpdateBrand = () => {
   const getCategoryDetails = async (id) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:4001/api/v1/brand/${id}`
+        `http://localhost:4001/api/v1/admin/brand/${id}`
       );
       setBrand(data.brand);
       setLoading(false);

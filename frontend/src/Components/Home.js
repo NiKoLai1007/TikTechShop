@@ -15,17 +15,11 @@ import Header from './Layout/Header';
 
 
 const categories = [
-    'Electronics',
-    'Cameras',
-    'Laptops',
-    'Accessories',
-    'Headphones',
-    'Food',
-    "Books",
-    'Clothes/Shoes',
-    'Beauty/Health',
+    'Womens',
+    'Mens',
+    'Kids',
     'Sports',
-    'Outdoor',
+    'Smart',
     'Home'
 ]
 const Home = () => {
@@ -43,11 +37,11 @@ const Home = () => {
     const createSliderWithTooltip = Slider.createSliderWithTooltip;
     const Range = createSliderWithTooltip(Slider.Range);
 
-    const getProducts = async (currentPage = 1, keyword = '', price, category = '') => {
-        let link = `http://localhost:4001/api/v1/products?page=${currentPage}&keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+    const getProducts = async (currentPage = 1, keyword = '', price) => {
+        let link = `http://localhost:4001/api/v1/products`
 
         if (category) {
-            link = `http://localhost:4001/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`
+            link = `http://localhost:4001/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         console.log(link)
         let res = await axios.get(link)
