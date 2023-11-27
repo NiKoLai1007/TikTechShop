@@ -31,7 +31,7 @@ const UserCharts = () => {
   }, []);
 
   return (
-    <ResponsiveContainer width="100%" height={1250}>
+    <ResponsiveContainer width="100%" height={400}>
       <ScatterChart data={allUsers}>
         <CartesianGrid strokeDasharray="2 2" />
         <XAxis dataKey="createdAt" />

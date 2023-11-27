@@ -23,14 +23,26 @@ const Shipping = ({ shipping, saveShippingInfo }) => {
     return (
         <Fragment>
             <MetaData title={'Shipping Info'} />
-            <CheckoutSteps shipping />
+             <div className="center-content">
+                <CheckoutSteps shipping />
+                <div className="image-with-text-container">
+                    <img
+                        className="img-fluid"
+                        src="/images/shopit_logo.png"
+                        alt="img_1"
+                    />
+                </div>
+            </div>
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form
                         className="shadow-lg"
                         onSubmit={submitHandler}
                     >
-                        <h1 className="mb-4">Shipping Info</h1>
+                      
+
+                      <h1 className="mb-4">| Shipping Info</h1>
+
                         <div className="form-group">
                             <label htmlFor="address_field">Address</label>
                             <input
@@ -106,7 +118,9 @@ const Shipping = ({ shipping, saveShippingInfo }) => {
                             CONTINUE
                         </button>
                     </form>
+                    <br/><br/>
                 </div>
+                <br/>
             </div>
 
         </Fragment>

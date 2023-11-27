@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Metadata from '../Layout/Metadata'
 import axios from 'axios'
 
+
 const Register = () => {
 
     const [user, setUser] = useState({
@@ -87,6 +88,15 @@ const Register = () => {
         }
     }
 
+    const handlerOnClick = async (provider) => {
+        try {
+          const res = await axios.socialMediaAuth(provider);
+          console.log(res);
+        } catch (error) {
+          console.error('Error during social media authentication:', error);
+        }
+      };
+      
 
     return (
         <Fragment>
@@ -179,6 +189,8 @@ const Register = () => {
                             REGISTER
                         </button>
                     </form>
+
+                   
                 </div>
             </div>
 

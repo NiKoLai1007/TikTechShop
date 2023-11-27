@@ -236,8 +236,20 @@ const Dashboard = () => {
                             </div>
                             
                             <div className="row pr-5">
+                        
+                            <div className="col-xl-8 col-md-6 mb-2">
+                                <div className="card_2 card text-white o-hidden h-100">
+                                <div className="card-header">
+                                <i className="fas fa-chart-line me-1"></i>
+                               User Chart
+                                </div>
+                                <div className="card-body">
+                                    <UserCharts />
+                                </div>
+                                </div>
+                            </div>
 
-                            <div className="col-xl-8 col-md-5 mb-2">
+                            <div className="col-xl-4 col-md-5 mb-2">
                                 <div className="card_2 card text-white o-hidden h-100">
                                 <div className="card-header">
                                 <i className="fas fa-chart-bar me-1"></i>
@@ -262,21 +274,11 @@ const Dashboard = () => {
                             </div>
 
 
-                            <div className="col-xl-12 col-md-6 mb-2">
-                                <div className="card_2 card text-white o-hidden h-100">
-                                <div className="card-header">
-                                <i className="fas fa-chart-line me-1"></i>
-                               User Chart
-                                </div>
-                                <div className="card-body">
-                                    <UserCharts />
-                                </div>
-                                </div>
-                            </div>
+                          
 
                             
 
-                            <div className="col-xl-12 col-md-6 mb-1">
+                            <div className="col-xl-8 col-md-6 mb-1">
                                 <div className="card_2 card text-white o-hidden h-100">
                                 <div className="card-header">
                                 <i className="fas fa-chart-pie me-1"></i>

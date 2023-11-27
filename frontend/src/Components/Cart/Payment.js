@@ -63,11 +63,23 @@ const Payment = ({cartItems, shippingInfo}) => {
     return (
         <Fragment>
             <MetaData title={'Payment'} />
+            <div className="center-content">
             <CheckoutSteps shipping confirmOrder payment />
+                <div className="image-with-text-container">
+                    <img
+                        className="img-fluid"
+                        src="/images/shopit_logo.png"
+                        alt="img_1"
+                    />
+                </div>
+            </div>
+           
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>
-                        <h1 className="mb-4">Card Info</h1>
+                
+                    <h1 className="mb-4">| Card Information</h1>
+                        <hr></hr>
                         <div className="form-group">
                             <label htmlFor="card_num_field">Card Number</label>
                             <input
@@ -106,6 +118,7 @@ const Payment = ({cartItems, shippingInfo}) => {
                         </button>
 
                     </form>
+                    <br/>
                 </div>
             </div>
 
