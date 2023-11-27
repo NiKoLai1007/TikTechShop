@@ -27,16 +27,45 @@ const ConfirmOrder = ({cartItems, shippingInfo}) => {
     return (
         <Fragment>
             <MetaData title={'Confirm Order'} />
-            <CheckoutSteps shipping confirmOrder />
+            <div className="center-content">
+             <CheckoutSteps shipping confirmOrder />
+                <div className="image-with-text-container">
+                    <img
+                        className="img-fluid"
+                        src="/images/shopit_logo.png"
+                        alt="img_1"
+                    />
+                </div>
+            </div>
+            
             <div className="row d-flex justify-content-between">
                 <div className="col-12 col-lg-8 mt-5 order-confirm">
-                    <h4 className="mb-3">Shipping Info</h4>
+                    <div className="small-card">
+                    <h4 className="mb-3">Delivery Address</h4>
+                    <hr></hr>
                     {getUser() && <p><b>Name:</b> {user && user.name}</p>}
                     <p><b>Phone:</b> {shippingInfo.phoneNo}</p>
-                    <p className="mb-4"><b>Address:</b> {`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`}</p>
+                    <p className="mb-2"><b>Address:</b></p>
+                    <p>{shippingInfo.address},</p>
+                    <p>{shippingInfo.city}, {shippingInfo.postalCode},</p>
+                    <p>{shippingInfo.country}</p>
+                    </div>
 
                     <hr />
-                    <h4 className="mt-4">Your Cart Items:</h4>
+                    <h4 className="mt-4">Products Ordered 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; Item Subtotal</h4>
 
                     {cartItems.map(item => (
                         <Fragment>
@@ -64,7 +93,7 @@ const ConfirmOrder = ({cartItems, shippingInfo}) => {
 
                 </div>
 
-                <div className="col-12 col-lg-3 my-4">
+                <div className="col-12 col-lg-4 my-8">
                     <div id="order_summary">
                         <h4>Order Summary</h4>
                         <hr />
@@ -79,7 +108,9 @@ const ConfirmOrder = ({cartItems, shippingInfo}) => {
                         <hr />
                         <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>Proceed to Payment</button>
                     </div>
+                    <br/> <br/><br/>
                 </div>
+              
 
 
             </div>

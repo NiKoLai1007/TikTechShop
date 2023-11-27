@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 
 import Loader from '../Layout/Loader'
@@ -12,6 +12,8 @@ import axios from 'axios'
 
 
 const ProductDetails = ({ addItemToCart, cartItems }) => {
+
+    const navigate = useNavigate()
 
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState({})
@@ -103,6 +105,10 @@ const ProductDetails = ({ addItemToCart, cartItems }) => {
         }
     }
 
+    const checkoutHandler = () => {
+        navigate('/login?redirect=shipping')
+    }
+
     const reviewHandler = () => {
         const formData = new FormData();
         formData.set('rating', rating);
@@ -144,35 +150,40 @@ const ProductDetails = ({ addItemToCart, cartItems }) => {
                         </div>
 
                         <div className="col-12 col-lg-5 mt-5">
-                            <h3>{product.name}</h3>
+                                    
+                            <br /> <br />
+                           <br/>
+                            <h1>{product.name}</h1>
                             <p id="product_id">Product # {product._id}</p>
 
-                            <hr />
-
+                           
+                            <br /> <br /> <br />
                             <div className="rating-outer">
                                 <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
                             </div>
                             <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
-
+                            <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
                             <hr />
 
                             <p id="product_price">${product.price}</p>
-                            <div className="stockCounter d-inline">
+                           
+
+                            <hr /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+                            <div className="stockCounter d-inline"> Quantity &nbsp;&nbsp;
                                 <span className="btn btn-danger minus" onClick={decreaseQty} >-</span>
 
                                 <input type="number" className="form-control count d-inline" value={quantity} readOnly />
                                 {/* <span className="btn btn-primary plus"> +</span> */}
                                 <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                             </div>
+                            
+                           
                             <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button>
-
-                            <hr />
-
-                            <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
-
-                            <hr />
-
-                            <h4 className="mt-2">Description:</h4>
+                        </div>
+                        <div className="col-12 col-lg-10 mt-5">
+                        <hr />
+                        <h4 className="mt-2">Description:</h4>
                             <p>{product.description}</p>
                             <hr />
                             <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
@@ -212,18 +223,21 @@ const ProductDetails = ({ addItemToCart, cartItems }) => {
                                                     </textarea>
 
                                                     <button className="btn my-3 float-right review-btn px-4 text-white" data-dismiss="modal" aria-label="Close" onClick={reviewHandler}>Submit</button>
+                                                
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                   
+                                    {product.reviews && product.reviews.length > 0 && (
 
+<ListReviews reviews={product.reviews} />
+
+)}
                                 </div>
+                              
                             </div>
-                            {product.reviews && product.reviews.length > 0 && (
-
-                                <ListReviews reviews={product.reviews} />
-
-                            )}
+                           
                         </div>
                     </div>
                 </Fragment>

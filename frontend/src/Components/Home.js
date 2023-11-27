@@ -91,14 +91,7 @@ const Home = () => {
                 <div className="container container-fluid">
                 <section id="carousel" className="mt-5">
                     <Carousel>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="/images/FinalS1.png"
-                                alt="First slide"
-                                style={{ height: '400px' }}
-                            />
-                        </Carousel.Item>
+                       
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
@@ -128,6 +121,14 @@ const Home = () => {
                                 className="d-block w-100"
                                 src="/images/FinalS5.png"
                                 alt="Fifth slide"
+                                style={{ height: '400px' }}
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="/images/FinalS1.png"
+                                alt="First slide"
                                 style={{ height: '400px' }}
                             />
                         </Carousel.Item>
