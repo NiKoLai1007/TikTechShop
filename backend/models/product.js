@@ -17,6 +17,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter product description'],
     },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
     ratings: {
         type: Number,
         default: 0
