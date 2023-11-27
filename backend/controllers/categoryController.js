@@ -10,6 +10,25 @@ exports.getCategory = async (req, res, next) => {
     })
 }
 
+exports.getCategoryById = async (req, res) => {
+  try {
+    const categoryId = req.params.id; // Extract the ID from the URL parameters
+    console.log('Requested category ID:', categoryId); // Log the requested ID
+
+    // Use the retrieved category
+    const category = await Category.findById(categoryId);
+
+    if (!category) {
+      return res.status(404).json({ error: 'Category not found' });
+    }
+
+    res.json(category);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Unable to retrieve category' });
+  }
+};
+
 exports.newCategory = async (req, res, next) => {
   let images = [];
   if (typeof req.body.images === "string") {
@@ -96,7 +115,7 @@ exports.newCategory = async (req, res, next) => {
     if (req.body.images) {
       for (let i = 0; i < images.length; i++) {
         const result = await cloudinary.v2.uploader.upload(images[i], {
-          folder: "categories",
+          folder: "category",
         });
         imagesLinks.push({
           public_id: result.public_id,
@@ -115,6 +134,7 @@ exports.newCategory = async (req, res, next) => {
       category,
     });
   };
+  
   exports.listCategory = async (req, res, next) => {
     const categorys = await Category.find();
   

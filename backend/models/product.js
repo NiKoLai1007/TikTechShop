@@ -17,6 +17,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter product description'],
     },
+    // category: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //   },
     ratings: {
         type: Number,
         default: 0
@@ -36,6 +40,11 @@ const productSchema = new mongoose.Schema({
     category: {
         type: mongoose.Schema.ObjectId,
         ref: "category",
+        required: true,
+    },
+    brand: {
+        type: mongoose.Schema.ObjectId,
+        ref: "brand",
         required: true,
     },
     seller: {
