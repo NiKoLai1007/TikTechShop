@@ -27,7 +27,7 @@ const Shipping = ({ shipping, saveShippingInfo }) => {
                 <CheckoutSteps shipping />
                 <div className="image-with-text-container">
                     <img
-                        className="img-fluid"
+                        className="img-fluids"
                         src="/images/shopit_logo.png"
                         alt="img_1"
                     />
