@@ -8,14 +8,13 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CategoryList from './CategoryList';
 
-
 const NewProduct = () => {
   const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  const [brand, setBrand] = useState(''); // Added brand state
-  const [stock, setStock] = useState(0);
+  const [brand, setBrand] = useState('');
+  const [stock, setStock] = useState('');
   const [seller, setSeller] = useState('');
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -23,19 +22,43 @@ const NewProduct = () => {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState('');
   const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]); // Added brands state
+  const [brands, setBrands] = useState([]);
 
   let navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  const validateForm = () => {
+    if (!name || !price || !description || !category || !brand || !stock || !seller || images.length === 0) {
+      setError('All fields are required');
+      return false;
+    }
+
+    if (isNaN(parseFloat(price)) || isNaN(parseInt(stock))) {
+      setError('Price and stock must be valid numbers');
+      return false;
+    }
+
+    if (parseFloat(price) <= 0 || parseInt(stock) < 0) {
+      setError('Price must be greater than 0 and stock must be a non-negative number');
+      return false;
+    }
+
+    setError('');
+    return true;
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     const formData = new FormData();
     formData.set('name', name);
     formData.set('price', price);
     formData.set('description', description);
     formData.set('category', category);
-    formData.set('brand', brand); // Include brand in formData
+    formData.set('brand', brand);
     formData.set('stock', stock);
     formData.set('seller', seller);
 
@@ -43,27 +66,6 @@ const NewProduct = () => {
       formData.append('images', image);
     });
 
-    newProduct(formData);
-  };
-
-  const onChange = (e) => {
-    const files = Array.from(e.target.files);
-    setImagesPreview([]);
-    setImages([]);
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((oldArray) => [...oldArray, reader.result]);
-          setImages((oldArray) => [...oldArray, reader.result]);
-        }
-      };
-
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const newProduct = async (formData) => {
     try {
       const config = {
         headers: {
@@ -82,6 +84,23 @@ const NewProduct = () => {
       console.error(error);
       setError(error.response?.data?.message || 'Something went wrong');
     }
+  };
+
+  const onChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImagesPreview([]);
+    setImages([]);
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((oldArray) => [...oldArray, reader.result]);
+          setImages((oldArray) => [...oldArray, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
   };
 
   const getCategories = async () => {
@@ -209,6 +228,13 @@ const NewProduct = () => {
                     <img src={img} key={img} alt="Images Preview" className="mt-3 mr-2" width="55" height="52" />
                   ))}
                 </div>
+
+                {/* Display error message */}
+                {error && (
+                  <div className="alert alert-danger" role="alert">
+                    {error}
+                  </div>
+                )}
 
                 <button id="login_button" type="submit" className="btn btn-block py-3">
                   CREATE
