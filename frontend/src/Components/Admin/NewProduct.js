@@ -14,6 +14,7 @@ const NewProduct = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
+  const [brand, setBrand] = useState(''); // Added brand state
   const [stock, setStock] = useState(0);
   const [seller, setSeller] = useState('');
   const [images, setImages] = useState([]);
@@ -21,7 +22,8 @@ const NewProduct = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState('');
-  const [categories, setCategories] = useState([]); // Use state to store fetched categories
+  const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]); // Added brands state
 
   let navigate = useNavigate();
 
@@ -33,6 +35,7 @@ const NewProduct = () => {
     formData.set('price', price);
     formData.set('description', description);
     formData.set('category', category);
+    formData.set('brand', brand); // Include brand in formData
     formData.set('stock', stock);
     formData.set('seller', seller);
 
@@ -69,7 +72,7 @@ const NewProduct = () => {
         },
       };
 
-      console.log('Form Data:', formData); // Log form data before sending
+      console.log('Form Data:', formData);
 
       const { data } = await axios.post(`http://localhost:4001/api/v1/admin/product/new`, formData, config);
 
@@ -81,7 +84,7 @@ const NewProduct = () => {
     }
   };
 
-  const CategoryList = async () => {
+  const getCategories = async () => {
     try {
       const config = {
         headers: {
@@ -97,8 +100,25 @@ const NewProduct = () => {
     }
   };
 
+  const getBrands = async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getToken()}`,
+        },
+      };
+
+      const { data } = await axios.get(`http://localhost:4001/api/v1/admin/brand`, config);
+      setBrands(data.brand);
+    } catch (error) {
+      setError(error.response?.data?.message || 'Unable to fetch brands');
+    }
+  };
+
   useEffect(() => {
-    CategoryList(); // Call getCategories when the component mounts
+    getCategories();
+    getBrands();
 
     if (error) {
       toast.error(error, {
@@ -112,6 +132,8 @@ const NewProduct = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
+
+    setLoading(false); // Set loading to false after fetching categories and brands
   }, [error, success, navigate]);
 
   return (
@@ -149,6 +171,17 @@ const NewProduct = () => {
                     {categories.map((cat) => (
                       <option key={cat._id} value={cat._id}>
                         {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="brand_field">Brand</label>
+                  <select className="form-control" id="brand_field" value={brand} onChange={(e) => setBrand(e.target.value)}>
+                    {brands.map((brd) => (
+                      <option key={brd._id} value={brd._id}>
+                        {brd.name}
                       </option>
                     ))}
                   </select>
