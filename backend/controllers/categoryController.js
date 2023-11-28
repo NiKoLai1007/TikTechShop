@@ -1,31 +1,31 @@
-const Category = require('../models/category')
-const cloudinary = require('cloudinary')
+const Category = require("../models/category");
+const cloudinary = require("cloudinary");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.getCategory = async (req, res, next) => {
-    const category = await Category.find()
-    res.status(201).json({
-        success: true,
-        category
-    })
-}
+  const category = await Category.find();
+  res.status(201).json({
+    success: true,
+    category,
+  });
+};
 
 exports.getCategoryById = async (req, res) => {
   try {
     const categoryId = req.params.id; // Extract the ID from the URL parameters
-    console.log('Requested category ID:', categoryId); // Log the requested ID
+    console.log("Requested category ID:", categoryId); // Log the requested ID
 
     // Use the retrieved category
     const category = await Category.findById(categoryId);
 
     if (!category) {
-      return res.status(404).json({ error: 'Category not found' });
+      return res.status(404).json({ error: "Category not found" });
     }
 
     res.json(category);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Unable to retrieve category' });
+    res.status(500).json({ error: "Unable to retrieve category" });
   }
 };
 
@@ -70,35 +70,35 @@ exports.newCategory = async (req, res, next) => {
     success: true,
     category,
   });
-  };
+};
 
-  exports.deleteCategory = async (req, res, next) => {
-    const category = await Category.findByIdAndDelete(req.params.id);
-    if (!category) {
-      return res.status(404).json({
-        success: false,
-        message: "Product not found",
-      });
-    }
-    // await product.remove();
-    res.status(200).json({
-      success: true,
-      message: "Category deleted",
+exports.deleteCategory = async (req, res, next) => {
+  const category = await Category.findByIdAndDelete(req.params.id);
+  if (!category) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
     });
-  };
-  
-  exports.updateCategory = async (req, res, next) => {
+  }
+  // await product.remove();
+  res.status(200).json({
+    success: true,
+    message: "Category deleted",
+  });
+};
 
-    let category = await Category.findById(req.params.id);
-    // console.log(req.body)
-    if (!category) {
-      return res.status(404).json({
-        success: false,
-        message: "Category not found",
-      });
-    }
-    let images = [];
-  
+exports.updateCategory = async (req, res, next) => {
+  let category = await Category.findById(req.params.id);
+  console.log(req.body);
+  if (!category) {
+    return res.status(404).json({
+      success: false,
+      message: "Category not found",
+    });
+  }
+  let images = [];
+
+  if (req.body.images) {
     if (typeof req.body.images === "string") {
       images.push(req.body.images);
     } else {
@@ -124,22 +124,25 @@ exports.newCategory = async (req, res, next) => {
       }
     }
     req.body.images = imagesLinks;
-    category = await Category.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-      useFindandModify: false,
-    });
-    return res.status(200).json({
-      success: true,
-      category,
-    });
-  };
+  }
+
+  category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindandModify: false,
+  });
   
-  exports.listCategory = async (req, res, next) => {
-    const categorys = await Category.find();
-  
-    res.status(200).json({
-      success: true,
-      categorys,
-    });
-  };
+  return res.status(200).json({
+    success: true,
+    category,
+  });
+};
+
+exports.listCategory = async (req, res, next) => {
+  const categorys = await Category.find();
+
+  res.status(200).json({
+    success: true,
+    categorys,
+  });
+};
