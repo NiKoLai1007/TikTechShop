@@ -2,17 +2,13 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import MetaData from './Layout/Metadata'
 import axios from 'axios';
-
 import { Carousel } from 'react-bootstrap';
-
 import Product from './Product/Product';
 import Loader from './Layout/Loader'
 import Pagination from 'react-js-pagination'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Header from './Layout/Header';
-
-
 
 const categories = [
     'Womens',
@@ -37,29 +33,35 @@ const Home = () => {
     const createSliderWithTooltip = Slider.createSliderWithTooltip;
     const Range = createSliderWithTooltip(Slider.Range);
 
-    const getProducts = async (currentPage = 1, keyword = '', price) => {
-        let link = `http://localhost:4001/api/v1/products`
-
+    const getProducts = async (currentPage = 1, keyword = '', price, category = '') => {
+        let link = `http://localhost:4001/api/v1/products?page=${currentPage}&keyword=${keyword}`;
+    
         if (category) {
-            link = `http://localhost:4001/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link += `&category=${category}`;
         }
-        console.log(link)
-        let res = await axios.get(link)
-        console.log(res)
-        setProducts(res.data.products)
-        setResPerPage(res.data.resPerPage)
-        setProductsCount(res.data.productsCount)
-        setFilteredProductsCount(res.data.filteredProductsCount)
-        setLoading(false)
-
+    
+        try {
+            let res = await axios.get(link);
+            setProducts(res.data.products);
+            setResPerPage(res.data.resPerPage);
+            setProductsCount(res.data.productsCount);
+            setFilteredProductsCount(res.data.filteredProductsCount);
+            setLoading(false);
+        } catch (error) {
+            setError(error.response.data.message);
+            setLoading(false);
+        }
     }
+    
+
     let count = productsCount;
 
     if (keyword) {
         count = filteredProductsCount
     }
     function setCurrentPageNo(pageNumber) {
-        setCurrentPage(pageNumber)
+    console.log('Current page:', pageNumber);
+    setCurrentPage(pageNumber);
     }
 
     const loadUser = async () => {
