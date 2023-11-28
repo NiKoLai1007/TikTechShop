@@ -169,8 +169,8 @@ const ProductsList = () => {
                 <div className="col-12 col-md-10">
                     <Fragment>
                         <h1 className="my-5">All Products</h1>
-                        <button className="btn btn-success mb-3">
-                            <Link to="/admin/product" className="text-white">
+                        <button className="procreate ml-auto">
+                            <Link to="/admin/product" className="procreate">
                                 <i className="fa fa-plus"></i> Create a Product
                             </Link>
                         </button>
