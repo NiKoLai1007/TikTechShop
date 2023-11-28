@@ -124,6 +124,11 @@ const UsersList = () => {
                 <div className="col-12 col-md-10">
                     <Fragment>
                         <h1 className="my-5">All Users</h1>
+                        <button className="procreate ml-auto">
+                <Link to="/admin/users/new" className="procreate">
+                  <i className="fa fa-plus"></i>Create a User
+                </Link>
+              </button>
                         {loading ? <Loader /> : (
                             <MDBDataTable
                                 data={setUsers()}

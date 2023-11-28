@@ -31,15 +31,19 @@ const UpdateCategory = () => {
     toast.success(message, {
       position: toast.POSITION.BOTTOM_CENTER,
     });
-
+    // console.log(category)
   const getCategoryDetails = async (id) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:4001/api/v1/admin/category/${id}`
+        `http://localhost:4001/api/v1/category/${id}`
       );
-      setCategory(data.category);
+      setCategory(data);
+      // console.log(data);
+      setName(data.name)
+      setOldImages(data.images);
       setLoading(false);
     } catch (error) {
+      console.log(error);
       setError(error.response.data.message);
     }
   };
@@ -64,8 +68,8 @@ const UpdateCategory = () => {
   };
 
   useEffect(() => {
+    getCategoryDetails(id);
     if (category && category._id !== id) {
-      getCategoryDetails(id);
     } else {
       setName(category.name);
       setOldImages(category.images);
@@ -80,7 +84,7 @@ const UpdateCategory = () => {
       navigate("/admin/category");
       successMsg("category updated successfully");
     }
-  }, [error, isUpdated, updateError, category, id]);
+  }, [isUpdated]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -117,7 +121,7 @@ const UpdateCategory = () => {
 
   const validateForm = () => {
     let isValid = true;
-  
+
     // Validate Name
     if (!name || !name.trim()) {
       setNameError("Name is required");
@@ -125,15 +129,15 @@ const UpdateCategory = () => {
     } else {
       setNameError("");
     }
-  
+
     // Validate Images
-    if (images.length === 0) {
-      setImagesError("Images are required");
-      isValid = false;
-    } else {
-      setImagesError("");
-    }
-  
+    // if (images.length === 0) {
+    //   setImagesError("Images are required");
+    //   isValid = false;
+    // } else {
+    //   setImagesError("");
+    // }
+
     return isValid;
   };
 

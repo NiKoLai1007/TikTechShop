@@ -37,6 +37,7 @@ import UpdateCategory from './Components/Admin/UpdateCategory';
 import BrandList from './Components/Admin/BrandList';
 import NewBrand from './Components/Admin/NewBrand';
 import UpdateBrand from './Components/Admin/UpdateBrand';
+import NewUser from './Components/Admin/NewUser';
 
 
 function App() {
@@ -180,6 +181,10 @@ function App() {
             path="/admin/category/new"
             element={<NewCategory/>} 
             />
+             <Route
+            path="/admin/users/new"
+            element={<NewUser/>} 
+            />
             <Route
             path="/admin/category/:id"
             element={<UpdateCategory/>} 
@@ -196,11 +201,18 @@ function App() {
             path="/admin/brand/:id"
             element={<UpdateBrand/>} 
             />
+            <Route
+            path="/admin/orders"
+            element={
+             
+              <OrdersList />} />
+            
+            
           <Route
           path="/admin/reviews"
           element={
             <ProtectedRoute isAdmin={true} >
-              <ProductReviews />
+              <ProductReviews />+
             </ProtectedRoute>} />
         </Routes>
         <Footer />
