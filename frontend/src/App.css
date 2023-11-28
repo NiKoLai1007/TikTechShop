@@ -307,34 +307,47 @@ a {
 }
 
 /* Loader */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* Adjust the background color and opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Set a higher z-index to ensure it appears above other elements */
+}
+
 .loader {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20%;
-  width: 80px;
-  height: 80px;
-  padding-left: 0;
-}
-.loader:after {
-  content: ' ';
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
+  width: 48px;
+  height: 48px;
+  background: #fff;
   border-radius: 50%;
-  border: 6px solid #8345fd;
-  border-color: #8345fd transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
+  position: relative;
+  animation: roll 1s ease-in-out infinite alternate;
 }
-@keyframes lds-dual-ring {
+
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 5px solid;
+  border-color: #0026ff transparent;
+}
+
+@keyframes roll {
   0% {
-    transform: rotate(0deg);
+    transform: translateX(-150%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translateX(150%) rotate(360deg);
   }
 }
+
+
 
 /* Cart */
 
